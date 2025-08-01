@@ -11,6 +11,7 @@ var mousePosition: Vector2 = Vector2(0,0)
 var wiggle = Wiggle.new()
 
 func _draw() -> void:
+	var _groupPairCount = {}
 	for gid in range(groups.size()):
 		var group = groups[gid]
 		var groupNodeIds = group.nodeIds.duplicate()
@@ -19,11 +20,19 @@ func _draw() -> void:
 		for i in range(groupNodeIds.size()):
 			var nodeId = groupNodeIds[i]
 			var nextNodeId = groupNodeIds[(i+1)%groupNodeIds.size()]
-			
+
 			var nodePosition = mousePosition if nodeId == -1 else nodes[nodeId].position
 			var nextNodePosition = mousePosition if nextNodeId == -1 else nodes[nextNodeId].position
-			
-			draw_line(nodePosition, nextNodePosition, groupColors[gid], 1, true)
+
+			var key = Utils.get_pair_key(nodeId, nextNodeId)
+			if not _groupPairCount.has(key):
+				_groupPairCount[key] = 0
+			_groupPairCount[key] += 1
+
+			var count = Utils.get_pair_count(groupPairCount, nodeId, nextNodeId)
+			var points = Utils.get_adjacent_line(_groupPairCount[key], count, nodePosition, nextNodePosition)
+
+			draw_line(points[0], points[1], groupColors[gid], 4, true)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,7 +56,7 @@ func _process(delta: float) -> void:
 		for node in nodes:
 			if node.isDragging:
 				for group in groups:
-					group.nodeIds.erase(node.id)
+					group.erase_node(node.id)
 	)
 
 func _input(event: InputEvent) -> void:
@@ -61,13 +70,19 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_LEFT:
 			for node in nodes:
 				node.dragOff()
-			
+
 		# Create group
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			if not isGroupActive():
 				for node in nodes:
 					if node.intersect(event.position):
-						var group = Group.new(true)
+						var group = Group.new(true, func ():
+							Utils.preprocess_groups(groupPairCount, groups)
+							print(str(groupPairCount))
+							for group in groups:
+								print(str(group.nodeIds))
+							pass
+						)
 						group.add_node_id(node.id)
 						groups.append(group)
 						queue_redraw()
@@ -75,6 +90,8 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			if groups.size() > 0:
 				groups[groups.size()-1].isInProgress = false
+				if groups[groups.size()-1].nodeIds.size() <= 1:
+					groups.pop_back()
 				queue_redraw()
 	elif event is InputEventMouseMotion:
 		mousePosition = event.position

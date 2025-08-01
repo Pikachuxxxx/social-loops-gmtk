@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjtvpqne35bbd" path="res://Textures/ProfilePicDefAlpha.png" id="2_6b8r6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2q8x"]
-radius = 15.0
+radius = 29.0172
 
 [node name="Node" type="StaticBody2D"]
 script = ExtResource("1_5g7os")
@@ -14,5 +14,5 @@ shape = SubResource("CircleShape2D_j2q8x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.499999, 0)
-scale = Vector2(0.0783333, 0.078373)
+scale = Vector2(0.148073, 0.148148)
 texture = ExtResource("2_6b8r6")
