@@ -1,23 +1,19 @@
 extends Node
 
-const PT = preload("res://Scripts/PostType.gd")
+const PT = preload("res://Scripts/PostTypes.gd")
+const PERT = preload("res://Scripts/PersonaTypes.gd")
 
-# Use POST_TYPE as an enum or bitmask
-#export(int, "ASMR", "POLITICAL", "COOKING", "CATS_DOGS_PICS", "TECHNOLOGY", "METAL_MUSIC", "FASHION", "SHOWER_THOUGHTS", "BUSINESS", "MEME", "RANT", "CELEB_GOSSIP", "ASTROLOGY") var post_type = 0
-
-# Exported variables go here, at the top of the class!
-const post_type: PT.POST_TYPE = PT.POST_TYPE.MEME
-# var porsona type ???
-const user_name: String = ""
-const occupation: String = ""
-const age: int = 0
+@export var persona_type: PERT.PERSONA_TYPE
+@export var interests: PT.POST_TYPE
+@export var dislikes: PT.POST_TYPE
+@export var user_name: String = ""
+@export var occupation: String = ""
+@export var age: int = 0
+@export var variant_idx: int = 0
+# randomly initialized at start for different varaints of the persona type
 const drama: float = 0.0
 const tolerance: float = 0.0
 const influence: float = 0.0
+# influenced by simulation
 var vibe: float = 100.0
 var mood: float = 0.0
-
-@export var number: int = 5
-
-func _ready():
-	pass
