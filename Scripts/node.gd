@@ -1,20 +1,18 @@
 extends StaticBody2D
 class_name MyNode
 
+const radius = 10
+
 var isDragging = false
 var id = -1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	queue_redraw()
+var buffer: Array[Vector2] = []
+	
+func dragOn ():
+	isDragging = true
 
-func _draw() -> void:
-	var center_position = Vector2(0,0)
-	var radius = 10
-	var circle_color = Color(1, 1, 1) # Red color (R, G, B, A)
-
-	# Draw the circle
-	draw_circle(center_position, radius, circle_color)
+func dragOff ():
+	isDragging = false
 
 func intersect (pos: Vector2) -> bool:
 	var space_state = get_world_2d().direct_space_state
