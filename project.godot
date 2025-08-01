@@ -14,3 +14,7 @@ config/name="Looped Degenerates"
 run/main_scene="uid://dcqben84wg4cm"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.695505, 0.695503, 0.695502, 1)

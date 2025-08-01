@@ -1,8 +1,7 @@
 extends Node2D
 
-const nodeScene: PackedScene = preload("res://node.tscn")
+const nodeScene: PackedScene = preload("res://Scenes/node.tscn")
 var nodes: Array[MyNode] = []
-
 var groups: Array[Group] = []
 
 const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET]
