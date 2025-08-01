@@ -32,7 +32,7 @@ func _draw() -> void:
 			var count = Utils.get_pair_count(groupPairCount, nodeId, nextNodeId)
 			var points = Utils.get_adjacent_line(_groupPairCount[key], count, nodePosition, nextNodePosition)
 
-			draw_line(points[0], points[1], groupColors[gid], 4, true)
+			draw_line(points[0], points[1], groupColors[gid], 2, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +45,7 @@ func _ready() -> void:
 		var node: MyNode = nodeScene.instantiate() as MyNode
 		node.id = i
 		node.position = pos
+		node.update_texture(UserGenerated.characterTextures[i])
 		nodes.append(node)
 		add_child(node)
 	queue_redraw()

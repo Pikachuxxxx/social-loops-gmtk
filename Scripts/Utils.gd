@@ -69,7 +69,7 @@ static func get_adjacent_line (iter: int, count: int, firstPoint: Vector2, secon
 	if count == 1:
 		return [firstPoint, secondPoint]
 
-	var offset = 4 + 2 # line_width + gap
+	var offset = 2 + 4 # line_width + gap
 	var size = count * offset - 1 # - gap
 	var startDist = size/2
 

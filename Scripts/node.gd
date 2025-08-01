@@ -7,7 +7,8 @@ var isDragging = false
 var id = -1
 
 var buffer: Array[Vector2] = []
-	
+
+"""
 func _draw() -> void:
 	var font = ThemeDB.fallback_font
 	var pos = Vector2(-6, -34)
@@ -15,6 +16,10 @@ func _draw() -> void:
 	
 func _ready() -> void:
 	queue_redraw()
+"""
+
+func update_texture (texture):
+	$Sprite2D.texture = texture
 
 func dragOn ():
 	isDragging = true
@@ -34,5 +39,5 @@ func intersect (pos: Vector2) -> bool:
 func move_node_if_dragging (pos: Vector2) -> bool:
 	if isDragging:
 		position = pos
-	queue_redraw()
+	#queue_redraw()
 	return isDragging
