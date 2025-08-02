@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dy1vb32td1nih" path="res://Scripts/Zuck.gd" id="2_8gbba"]
 [ext_resource type="Shader" uid="uid://bjwq8jti45nvd" path="res://Shaders/balatro.gdshader" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://c4s7cypestpx" path="res://Scripts/CameraController.gd" id="3_kry3j"]
-[ext_resource type="AudioStream" uid="uid://bhnrbrt1j2n7a" path="res://assets/audio/sfx/idle.wav" id="4_jjvhh"]
+[ext_resource type="AudioStream" uid="uid://cukmeggeb4xxc" path="res://assets/audio/sfx/idle.wav" id="4_jjvhh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gbba"]
 shader = ExtResource("2_bo1nx")
