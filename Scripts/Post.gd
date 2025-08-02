@@ -1,4 +1,5 @@
-extends Node
+extends Resource
+class_name Post
 
 const PT = preload("res://Scripts/PostTypes.gd")
 
@@ -8,5 +9,5 @@ const PT = preload("res://Scripts/PostTypes.gd")
 @export var base_engagement: float
 var likes_count: int
 var who_liked: Array
-var who_posted: int
-var is_alive: bool
+var who_posted: Node
+var is_active: bool

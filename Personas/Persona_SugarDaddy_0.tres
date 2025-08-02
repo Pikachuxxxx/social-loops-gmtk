@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://bqsvngdt70ti3"]
+
+[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_5t3ck"]
+[ext_resource type="Texture2D" uid="uid://d2dktg4a3hcs0" path="res://assets/image/dps/sugar_daddy.png" id="1_xed7s"]
+
+[resource]
+script = ExtResource("1_5t3ck")
+user_name = "bankroll_papi_44💰"
+occupation = "Retired"
+display_pic = ExtResource("1_xed7s")
+age = 52
+variant_idx = 0
+persona_type = 0
+likes = 329
+dislikes = 2704
+drama = 0.0
+tolerance = 0.0
+influence = 0.0
+metadata/_custom_type_script = "uid://cb5ttynshhrgo"

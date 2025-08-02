@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://bu4xxk4ktdf37"]
+
+[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_f7q4e"]
+[ext_resource type="Texture2D" uid="uid://dyaf8gh4ye41s" path="res://assets/image/dps/karen.png" id="1_gi6au"]
+
+[resource]
+script = ExtResource("1_f7q4e")
+user_name = "let_me_speak_77📱"
+occupation = "Activist"
+display_pic = ExtResource("1_gi6au")
+age = 41
+variant_idx = 0
+persona_type = 0
+likes = 4102
+dislikes = 560
+drama = 0.0
+tolerance = 0.0
+influence = 0.0
+metadata/_custom_type_script = "uid://cb5ttynshhrgo"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://btuxntitgbxb3"]
+
+[ext_resource type="Texture2D" uid="uid://8q0oreavbxto" path="res://assets/image/dps/finance_bro.png" id="1_8de0a"]
+[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_co76l"]
+
+[resource]
+script = ExtResource("1_co76l")
+user_name = "stonks_lord💸"
+occupation = "Hedge Fund Manager"
+display_pic = ExtResource("1_8de0a")
+age = 34
+variant_idx = 0
+persona_type = 4
+likes = 784
+dislikes = 77
+drama = 0.0
+tolerance = 0.0
+influence = 0.0
+metadata/_custom_type_script = "uid://cb5ttynshhrgo"
