@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy5xqd3qkusq5"]
+[gd_scene load_steps=4 format=3 uid="uid://brbabt16co8w3"]
 
 [ext_resource type="Script" uid="uid://03mqv4t3anld" path="res://Scripts/node.gd" id="1_5g7os"]
 [ext_resource type="Texture2D" uid="uid://dyaf8gh4ye41s" path="res://assets/image/dps/karen.png" id="2_6b8r6"]

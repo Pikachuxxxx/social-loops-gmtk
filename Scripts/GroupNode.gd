@@ -1,5 +1,5 @@
 extends Node
-class_name Group
+class_name GroupNode
 
 static var idCount = 0
 
@@ -9,12 +9,13 @@ var isInProgress = false
 var nodeIds: Array[int] = []
 var onGroupUpdate: Callable = func ():
 	pass
+var lastPostTime: float = 0.0
 
 func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass) -> void:
 	isInProgress = _isInProgress
 	onGroupUpdate = _onGroupUpdate
-	id = Group.idCount
-	Group.idCount += 1
+	id = GroupNode.idCount
+	GroupNode.idCount += 1
 
 func add_node_id (nodeId: int) -> void:
 	if not nodeIds.has(nodeId): # Use dictionary instead?

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://b0i22ij2qynmm"]
+
+[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_6fca7"]
+[ext_resource type="Texture2D" uid="uid://dscjgxjhek43w" path="res://assets/image/dps/influencer_he.png" id="1_g3gt5"]
+
+[resource]
+script = ExtResource("1_6fca7")
+user_name = "stream_dream_99🎥"
+occupation = "Mall Worker"
+display_pic = ExtResource("1_g3gt5")
+age = 26
+variant_idx = 0
+persona_type = 0
+likes = 2569
+dislikes = 432
+drama = 0.0
+tolerance = 0.0
+influence = 0.0
+metadata/_custom_type_script = "uid://cb5ttynshhrgo"
