@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dyaf8gh4ye41s" path="res://assets/image/dps/karen.png" id="2_6b8r6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2q8x"]
-radius = 29.0172
+radius = 32.0
 
 [node name="Node" type="StaticBody2D"]
 texture_filter = 1
@@ -16,5 +16,5 @@ shape = SubResource("CircleShape2D_j2q8x")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-0.499999, 0)
-scale = Vector2(1.93, 1.93)
+scale = Vector2(2, 2)
 texture = ExtResource("2_6b8r6")

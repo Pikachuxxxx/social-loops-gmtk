@@ -21,6 +21,9 @@ func _ready() -> void:
 func update_texture (texture):
 	$Sprite2D.texture = texture
 
+func update_sprite_scale (factor: float):
+	$Sprite2D.scale = Vector2(factor, factor)
+
 func dragOn ():
 	isDragging = true
 
