@@ -14,8 +14,12 @@ const SPAWN_OFFSET: int = -50
 
 func init (person: Persona):
 	persona = person
+	$NodeCollisionShape2D/Sprite2D.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	$NodeCollisionShape2D/Sprite2D.texture = persona.display_pic
+	# Set label below display picture
 	$NodeCollisionShape2D/Label.text = persona.user_name
+	$NodeCollisionShape2D/Label.position += Vector2(0,85) 
+	
 
 func dragOn ():
 	isDragging = true
@@ -43,6 +47,7 @@ func update_sprite_scale (factor: float):
 func spawn_like_sprite(position: Vector2):
 	var sprite = Sprite2D.new()
 	sprite.texture = preload("res://assets/image/icons/like.png")
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
 	var spawn_position = position + offset
 	sprite.position = spawn_position
@@ -55,6 +60,7 @@ func spawn_like_sprite(position: Vector2):
 func spawn_dislike_sprite(position: Vector2):
 	var sprite = Sprite2D.new()
 	sprite.texture = preload("res://assets/image/icons/downvote.png")
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
 	var spawn_position = position + offset
 	sprite.position = spawn_position
@@ -67,6 +73,7 @@ func spawn_dislike_sprite(position: Vector2):
 func spawn_comment_sprite(position: Vector2):
 	var sprite = Sprite2D.new()
 	sprite.texture = preload("res://assets/image/icons/comment.png")
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
 	var spawn_position = position + offset
 	sprite.position = spawn_position

@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://cer2qc2148q0b"]
+[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://cvx8l6qaeipqr"]
 
 [ext_resource type="Texture2D" uid="uid://c7we35f0c0t77" path="res://assets/image/dps/tech_bro.png" id="1_g2tpb"]
-[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_p68g4"]
+[ext_resource type="Script" uid="uid://bfl02jfhtlrca" path="res://Scripts/Persona.gd" id="1_p68g4"]
 
 [resource]
 script = ExtResource("1_p68g4")

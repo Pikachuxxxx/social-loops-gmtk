@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg")
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.695505, 0.695503, 0.695502, 1)
