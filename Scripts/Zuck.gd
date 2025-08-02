@@ -43,12 +43,5 @@ func process(delta: float, groups: Array[GroupNode], nodes: Array[PersonaNode]) 
 		# TODO: In future we can have pre-defined curated posts based on the persona's likes etc.
 		# For now, we just create a new post with the liked post type
 		post.init(postingPersonaNode.id, likedPostIndex)
-
-		for nodeId in group.nodeIds:
-			# Skip if the node is the same as the persona posting
-			if nodeId == postingPersonaNode.id:
-				continue
-			var node: PersonaNode = nodes[nodeId]
-			if node and node.persona:
-				node.update_feed(post)
+		group.make_post(post)
 	pass

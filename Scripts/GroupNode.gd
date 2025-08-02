@@ -10,6 +10,7 @@ var nodeIds: Array[int] = []
 var onGroupUpdate: Callable = func ():
 	pass
 var lastPostTime: float = 0.0
+signal post_created(post)
 
 func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass) -> void:
 	isInProgress = _isInProgress
@@ -17,16 +18,22 @@ func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass
 	id = GroupNode.idCount
 	GroupNode.idCount += 1
 
-func add_node_id (nodeId: int) -> void:
+func add_node_id (nodeId: int, nodeCB: Callable) -> void:
 	if not nodeIds.has(nodeId): # Use dictionary instead?
 		nodeIds.append(nodeId)
+		self.connect("post_created", nodeCB)
 		onGroupUpdate.call()
 
-func insert_node_id (insertIdx: int, nodeId: int) -> void:
+func insert_node_id (insertIdx: int, nodeId: int, nodeCB: Callable) -> void:
 	if not nodeIds.has(nodeId): # Use dictionary instead?
 		nodeIds.insert(insertIdx, nodeId)
+		self.connect("post_created", nodeCB)
 		onGroupUpdate.call()
 
-func erase_node (nodeId: int):
+func erase_node (nodeId: int, nodeCB: Callable):
 	nodeIds.erase(nodeId)
+	self.disconnect("post_created", nodeCB)
 	onGroupUpdate.call()
+
+func make_post(post):
+	emit_signal("post_created", post)

@@ -94,6 +94,9 @@ func get_bitfield_post_types(persona: Persona) -> Array[int]:
 	return liked_post_types
 
 func update_feed(post: Post) -> void:
+	# If self posted don't react
+	if(post.who_posted == id):
+		return
 	# This is where the persona reacts to the post
 	print("Persona %s reacting to post of type %d by %d" % [persona.user_name, post.post_type, post.who_posted])
 	var likedPostTypes: Array[int] = get_bitfield_post_types(persona)

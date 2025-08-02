@@ -65,7 +65,7 @@ func _process(delta: float) -> void:
 		for node in g_nodes:
 			if node.isDragging:
 				for group in g_groups:
-					group.erase_node(node.id)
+					group.erase_node(node.id, node.update_feed)
 	)
 
 	for node in g_nodes:
@@ -98,7 +98,7 @@ func _input(event: InputEvent) -> void:
 								print(str(group.nodeIds))
 							pass
 						)
-						group.add_node_id(node.id)
+						group.add_node_id(node.id, node.update_feed)
 						g_groups.append(group)
 						queue_redraw()
 						break
@@ -120,14 +120,14 @@ func _input(event: InputEvent) -> void:
 				if groupNodeVector.x != -1:
 					var group = g_groups[groupNodeVector.x]
 					var insertIdx = groupNodeVector.y+1
-					group.insert_node_id(insertIdx, node.id)
+					group.insert_node_id(insertIdx, node.id, node.update_feed)
 				wiggle.on_move(event.position)
 				queue_redraw()
 		# GroupNode expansion
 		if isGroupActive():
 			for node in g_nodes:
 				if node.intersect(event.position):
-					g_groups[g_groups.size()-1].add_node_id(node.id)
+					g_groups[g_groups.size()-1].add_node_id(node.id, node.update_feed)
 			queue_redraw()
 
 func isGroupActive () -> bool:
