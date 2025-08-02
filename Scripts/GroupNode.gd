@@ -9,6 +9,7 @@ var isInProgress = false
 var nodeIds: Array[int] = []
 var onGroupUpdate: Callable = func ():
 	pass
+var lastPostTime: float = 0.0
 
 func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass) -> void:
 	isInProgress = _isInProgress

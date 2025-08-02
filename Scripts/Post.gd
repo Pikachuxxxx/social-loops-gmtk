@@ -10,14 +10,14 @@ const PT = preload("res://Scripts/PostTypes.gd")
 var likes_count: int
 var dislikes_count: int
 var who_liked: Array[int]
-var who_posted: PersonaNode
+var who_posted: int
 var is_active: bool
 
-func _init(who_posted: PersonaNode, post_type: PT.POST_TYPE):
+func init(who: int, post_type: PT.POST_TYPE):
 	likes_count = 0
 	who_liked = []
 	is_active = true
-	self.who_posted = who_posted
+	self.who_posted = who
 	self.post_type = post_type
 	# TODO: In future iteration the node's factors will be used to determine these values in addition to being randomized and also based on the post type
 	# For now, they are just randomized
@@ -26,13 +26,15 @@ func _init(who_posted: PersonaNode, post_type: PT.POST_TYPE):
 	base_engagement = randf() * 2.0 - 1.0
 
 
-func like(persona: PersonaNode):
+func like(persona: Persona):
 	if persona and not who_liked.has(persona.id):
+		print("Persona %s liked post %d" % [persona.user_name, post_type])
 		who_liked.append(persona.id)
 		likes_count += 1
 
-func dislike(persona: PersonaNode):
+func dislike(persona: Persona):
 	if persona and who_liked.has(persona.id):
+		print("Persona %s disliked post %d" % [persona.user_name, post_type])
 		who_liked.erase(persona.id)
 		dislikes_count += 1
 		likes_count -= 1

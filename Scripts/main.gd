@@ -4,6 +4,7 @@ const PERT = preload("res://Scripts/PersonaTypes.gd")
 const g_nodescene: PackedScene = preload("res://Scenes/persona_node.tscn")
 var g_nodes: Array[PersonaNode] = []
 var g_groups: Array[GroupNode] = []
+var zuck: Zuck
 
 var groupPairCount: Dictionary = {}
 #const maxg_groups = 7 # just to avoid any crashes for now and maintain perf
@@ -49,13 +50,16 @@ func _ready() -> void:
 		var node: PersonaNode = g_nodescene.instantiate() as PersonaNode
 		node.id = i
 		node.position = pos
+		persona.id = node.id
 		node.init(persona)
 		g_nodes.append(node)
 		add_child(node)
 	queue_redraw()
+	zuck = get_tree().get_root().get_node("Node2D/ZuckAlg") as Zuck
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	zuck.process(delta, g_groups, g_nodes)
 	wiggle.process(delta, func ():
 		# Wiggle detected
 		for node in g_nodes:

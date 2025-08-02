@@ -21,3 +21,4 @@ var dislikes: int
 # influenced by simulation
 var vibe: float = 100.0
 var mood: float = 0.0
+var id: int = -1 # node id
