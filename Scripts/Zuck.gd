@@ -28,6 +28,7 @@ func process(delta: float, groups: Array[GroupNode], nodes: Array[PersonaNode]) 
 			continue
 		
 		group.lastPostTime = (Time.get_ticks_msec() / 1000.0)
+		print("====================")
 		print("Group %d is posting" % group.id)
 		# Randomly pick a persona to post
 		var postingPersonaID: int = randi() % group.nodeIds.size()
@@ -38,6 +39,7 @@ func process(delta: float, groups: Array[GroupNode], nodes: Array[PersonaNode]) 
 		var likedPostIndex: int = get_random_liked_index(likes, PT.POST_TYPE.MAX_POST_TYPES)
 		var post: Post = Post.new();
 		print("Posting from %s with post type %d" % [postingPersonaNode.persona.user_name, likedPostIndex])
+		print("--------------------")
 		# TODO: In future we can have pre-defined curated posts based on the persona's likes etc.
 		# For now, we just create a new post with the liked post type
 		post.init(postingPersonaNode.id, likedPostIndex)
