@@ -3,6 +3,7 @@ class_name PersonaNode
 
 const PT = preload("res://Scripts/PostTypes.gd")
 const PERT = preload("res://Scripts/PersonaTypes.gd")
+const pixelFont = preload("res://Fonts/PixelifySans-Regular.ttf")
 
 const radius = 10
 var isDragging = false
@@ -18,8 +19,13 @@ func init (person: Persona):
 	$NodeCollisionShape2D/Sprite2D.texture = persona.display_pic
 	# Set label below display picture
 	$NodeCollisionShape2D/Label.text = persona.user_name
-	$NodeCollisionShape2D/Label.position += Vector2(0,85) 
+	$NodeCollisionShape2D/Label.position += Vector2(0,85)
 	
+	var labelSettings = LabelSettings.new()
+	labelSettings.font = pixelFont
+	labelSettings.font_color = Color.BLACK
+	labelSettings.font_size = 16
+	$NodeCollisionShape2D/Label.label_settings = labelSettings
 
 func dragOn ():
 	isDragging = true
