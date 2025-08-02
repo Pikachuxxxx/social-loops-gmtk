@@ -16,17 +16,18 @@ func _init():
 
 [sub_resource type="LabelSettings" id="LabelSettings_8dpai"]
 font = ExtResource("1_jgmso")
-font_size = 18
+font_size = 41
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1wpbu"]
+line_spacing = -9.65
 font = ExtResource("2_8dpai")
-font_size = 18
-font_color = Color(0.158472, 0.158472, 0.158472, 1)
+font_size = 43
+font_color = Color(0.321728, 0.321728, 0.321728, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qb3by"]
 font = ExtResource("2_8dpai")
-font_size = 12
+font_size = 39
 font_color = Color(1, 0.291842, 0.382343, 1)
 
 [node name="Post" type="Node2D"]
@@ -34,63 +35,66 @@ scale = Vector2(5, 4.168)
 script = SubResource("GDScript_8dpai")
 
 [node name="ShadowPolygon" type="Polygon2D" parent="."]
-position = Vector2(2.6585, -2.63807)
-scale = Vector2(1.17196, 0.84524)
+position = Vector2(-0.303452, 3.53341)
+scale = Vector2(0.803448, 0.567091)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-28, -24, 30, -22, 28, 20, -28, 20)
 
 [node name="PostPolygon" type="Polygon2D" parent="."]
-position = Vector2(-0.699605, -5.55057)
-scale = Vector2(1.17196, 0.863755)
+position = Vector2(-1.51035, 2.26539)
+scale = Vector2(0.810345, 0.574238)
 polygon = PackedVector2Array(-28, -24, 30, -23, 29.515, -2.14463, 29, 20, -28, 21)
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2(18.4696, -3.94437)
-scale = Vector2(1.17196, 0.85181)
+position = Vector2(11.35, 3.33344)
+scale = Vector2(0.803333, 0.585535)
 points = PackedVector2Array(-44, -26, -44, 19, 13, 18, 14, -25, -44, -26)
 width = 1.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
-position = Vector2(2.81341, -9.8438)
-scale = Vector2(1.45323, 1.17196)
+position = Vector2(4.91886, -8.63724)
+scale = Vector2(1.20566, 1.17196)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-21, 20, -16, 20, -18.5, 24)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(1.97389, -11.8579)
-scale = Vector2(1.40635, 1.17196)
+position = Vector2(5.2, -10.0768)
+scale = Vector2(1.19534, 1.17196)
 polygon = PackedVector2Array(-21, 20, -16, 20, -18.5, 24)
 
 [node name="UserName" type="Label" parent="."]
 texture_filter = 1
-offset_left = -29.6633
-offset_top = -22.6589
-offset_right = 109.337
-offset_bottom = 3.34108
-scale = Vector2(0.274782, 0.34849)
+offset_left = -21.8
+offset_top = -9.83685
+offset_right = 405.2
+offset_bottom = 40.1631
+scale = Vector2(0.0787205, 0.0998366)
 text = "Karen Kristoph"
 label_settings = SubResource("LabelSettings_8dpai")
+metadata/_edit_use_anchors_ = true
 
 [node name="PostMessage" type="Label" parent="."]
 texture_filter = 1
-offset_left = -30.0
-offset_top = -13.0
-offset_right = 206.0
-offset_bottom = 57.0
-scale = Vector2(0.254066, 0.313502)
+offset_left = -21.8
+offset_top = -4.0
+offset_right = 472.2
+offset_bottom = 170.0
+scale = Vector2(0.0855077, 0.105511)
 text = "Why is the sky blue? 
 Stupid nature!"
 label_settings = SubResource("LabelSettings_1wpbu")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="PostType" type="Label" parent="."]
 texture_filter = 1
-offset_left = 9.0
-offset_top = -22.0
-offset_right = 113.0
-offset_bottom = -4.0
-scale = Vector2(0.254066, 0.313502)
+offset_left = -23.0
+offset_top = -17.9942
+offset_right = 448.0
+offset_bottom = 29.0058
+scale = Vector2(0.0976866, 0.120539)
 text = "[Debug] Political"
 label_settings = SubResource("LabelSettings_qb3by")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
