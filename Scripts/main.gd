@@ -74,12 +74,13 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		var world_pos = get_global_mouse_position() #get_viewport().get_camera_2d().screen_to_world(event.position)
 		# Move Globals.g_nodes around
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			for node in Globals.g_nodes:
-				if node.intersect(event.position):
+				if node.intersect(world_pos):
 					node.dragOn()
-					wiggle.init(event.position)
+					wiggle.init(world_pos)
 		elif event.button_index == MOUSE_BUTTON_LEFT:
 			for node in Globals.g_nodes:
 				node.dragOff()
@@ -88,7 +89,7 @@ func _input(event: InputEvent) -> void:
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			if not isGroupActive():
 				for node in Globals.g_nodes:
-					if node.intersect(event.position):
+					if node.intersect(world_pos):
 						var group = GroupNode.new(true, func ():
 							Utils.preprocess_groups(groupPairCount, Globals.g_groups)
 							print(str(groupPairCount))
@@ -110,21 +111,21 @@ func _input(event: InputEvent) -> void:
 						break
 				queue_redraw()
 	elif event is InputEventMouseMotion:
-		mousePosition = event.position
+		mousePosition = get_global_mouse_position() #get_viewport().get_camera_2d().screen_to_world(event.position)
 		# Node dragging
 		for node in Globals.g_nodes:
-			if node.move_node_if_dragging(event.position):
+			if node.move_node_if_dragging(mousePosition):
 				var groupNodeVector = Utils.is_node_touching_group(node, Globals.g_nodes, Globals.g_groups)
 				if groupNodeVector.x != -1:
 					var group = Globals.g_groups[groupNodeVector.x]
 					var insertIdx = groupNodeVector.y+1
 					group.insert_node_id(insertIdx, node.id, node.update_feed)
-				wiggle.on_move(event.position)
+				wiggle.on_move(mousePosition)
 				queue_redraw()
 		# GroupNode expansion
 		if isGroupActive():
 			for node in Globals.g_nodes:
-				if node.intersect(event.position):
+				if node.intersect(mousePosition):
 					Globals.g_groups[Globals.g_groups.size()-1].add_node_id(node.id, node.update_feed)
 			queue_redraw()
 

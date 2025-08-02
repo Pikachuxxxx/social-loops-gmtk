@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcqben84wg4cm"]
+[gd_scene load_steps=8 format=3 uid="uid://dcqben84wg4cm"]
 
 [ext_resource type="Script" uid="uid://dh2c3yewo2rj0" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dy1vb32td1nih" path="res://Scripts/Zuck.gd" id="2_8gbba"]
 [ext_resource type="Shader" uid="uid://bjwq8jti45nvd" path="res://Shaders/balatro.gdshader" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://c4s7cypestpx" path="res://Scripts/CameraController.gd" id="3_kry3j"]
 [ext_resource type="AudioStream" uid="uid://bhnrbrt1j2n7a" path="res://assets/audio/sfx/idle.wav" id="4_jjvhh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gbba"]
@@ -20,6 +21,7 @@ post_cooldown_time_sec = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 325)
+script = ExtResource("3_kry3j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
