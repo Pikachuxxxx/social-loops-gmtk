@@ -4,6 +4,8 @@ class_name PersonaNode
 const PT = preload("res://Scripts/PostTypes.gd")
 const PERT = preload("res://Scripts/PersonaTypes.gd")
 const pixelFont = preload("res://Fonts/PixelifySans-Regular.ttf")
+const LikeFX = preload("res://FX/LikesFX.tscn")
+const DownvotesFX = preload("res://FX/DownvotesFX.tscn")
 
 const radius = 10
 var isDragging = false
@@ -50,32 +52,6 @@ func move_node_if_dragging (pos: Vector2) -> bool:
 func update_sprite_scale (factor: float):
 	$NodeCollisionShape2D/Sprite2D.scale = Vector2(factor, factor)
 
-func spawn_like_sprite(position: Vector2):
-	var sprite = Sprite2D.new()
-	sprite.texture = preload("res://assets/image/icons/like.png")
-	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
-	var spawn_position = position + offset
-	sprite.position = spawn_position
-	sprite.scale = Vector2(2.0, 2.0)
-	get_tree().current_scene.add_child(sprite)
-	# Wait 2 seconds then free the sprite
-	await get_tree().create_timer(2.0).timeout
-	sprite.queue_free()
-
-func spawn_dislike_sprite(position: Vector2):
-	var sprite = Sprite2D.new()
-	sprite.texture = preload("res://assets/image/icons/downvote.png")
-	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
-	var spawn_position = position + offset
-	sprite.position = spawn_position
-	sprite.scale = Vector2(2.0, 2.0)
-	get_tree().current_scene.add_child(sprite)
-	# Wait 2 seconds then free the sprite
-	await get_tree().create_timer(2.0).timeout
-	sprite.queue_free()
-
 func spawn_comment_sprite(position: Vector2):
 	var sprite = Sprite2D.new()
 	sprite.texture = preload("res://assets/image/icons/comment.png")
@@ -99,9 +75,22 @@ func get_bitfield_post_types(persona: Persona) -> Array[int]:
 			liked_post_types.append(flag)
 	return liked_post_types
 
+func deactivate_post_ui(postNode: Node):
+	await get_tree().create_timer(2.0).timeout
+	postNode.visible = false
+
+func set_post(post: Post) -> void:
+	if(persona and post):
+		$NodeCollisionShape2D/Post.visible = true
+		$NodeCollisionShape2D/Post/UserName.text = persona.user_name
+		## TODO: choose a post from post bank based on the type and intent etc.
+		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_string_from_value(post.post_type)
+		deactivate_post_ui($NodeCollisionShape2D/Post)
+
 func update_feed(post: Post) -> void:
-	# If self posted don't react
+	# If self posted don't react, but make the post
 	if(post.who_posted == id):
+		set_post(post)
 		return
 	# This is where the persona reacts to the post
 	print("Persona %s reacting to post of type %d by %d" % [persona.user_name, post.post_type, post.who_posted])
@@ -110,11 +99,11 @@ func update_feed(post: Post) -> void:
 	if post.post_type in likedPostTypes:
 		post.like(persona)
 		print("\tSpawn like sprite at position %s" % position)
-		spawn_like_sprite(position)
+		$NodeCollisionShape2D/LikesFx.restart()
 	elif post.post_type in dislikedPostTypes:
 		post.dislike(persona)
 		print("\tSpawn dislike sprite at position %s" % position)
-		spawn_dislike_sprite(position)
+		$NodeCollisionShape2D/DownvotesFX.restart()
 	else:
 		spawn_comment_sprite(position)
 		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])

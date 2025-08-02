@@ -43,13 +43,5 @@ func process(delta: float) -> void:
 		# TODO: In future we can have pre-defined curated posts based on the persona's likes etc.
 		# For now, we just create a new post with the liked post type
 		post.init(postingPersonaNode.id, likedPostIndex)
-		
-		var postNode: PostNode = load("res://Scenes/Post.tscn").instantiate() as PostNode
-		postNode.position = postingPersonaNode.global_position
-		add_child(postNode)
-		postNode.set_post(post)
-		await get_tree().create_timer(2.0).timeout
-		postNode.queue_free()
-
 		group.make_post(post)
 	pass
