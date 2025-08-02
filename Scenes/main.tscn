@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcqben84wg4cm"]
+[gd_scene load_steps=7 format=3 uid="uid://dcqben84wg4cm"]
 
 [ext_resource type="Script" uid="uid://dh2c3yewo2rj0" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dy1vb32td1nih" path="res://Scripts/Zuck.gd" id="2_8gbba"]
 [ext_resource type="Shader" uid="uid://bjwq8jti45nvd" path="res://Shaders/balatro.gdshader" id="2_bo1nx"]
+[ext_resource type="AudioStream" uid="uid://bhnrbrt1j2n7a" path="res://assets/audio/sfx/idle.wav" id="4_jjvhh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gbba"]
 shader = ExtResource("2_bo1nx")
@@ -29,3 +30,7 @@ transform = Transform2D(1, 0, 0, 1, 585, 328)
 material = SubResource("ShaderMaterial_8gbba")
 position = Vector2(2, 3)
 mesh = SubResource("QuadMesh_jjgbg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jjvhh")
+autoplay = true
