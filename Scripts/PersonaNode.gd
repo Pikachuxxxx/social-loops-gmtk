@@ -37,12 +37,16 @@ func move_node_if_dragging (pos: Vector2) -> bool:
 		position = pos
 	return isDragging
 
+func update_sprite_scale (factor: float):
+	$NodeCollisionShape2D/Sprite2D.scale = Vector2(factor, factor)
+
 func spawn_like_sprite(position: Vector2):
 	var sprite = Sprite2D.new()
 	sprite.texture = preload("res://assets/image/icons/like.png")
 	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
 	var spawn_position = position + offset
 	sprite.position = spawn_position
+	sprite.scale = Vector2(2.0, 2.0)
 	get_tree().current_scene.add_child(sprite)
 	# Wait 2 seconds then free the sprite
 	await get_tree().create_timer(2.0).timeout
@@ -54,6 +58,7 @@ func spawn_dislike_sprite(position: Vector2):
 	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
 	var spawn_position = position + offset
 	sprite.position = spawn_position
+	sprite.scale = Vector2(2.0, 2.0)
 	get_tree().current_scene.add_child(sprite)
 	# Wait 2 seconds then free the sprite
 	await get_tree().create_timer(2.0).timeout
@@ -65,6 +70,7 @@ func spawn_comment_sprite(position: Vector2):
 	var offset = Vector2(0, SPAWN_OFFSET)  # 30 pixels upward
 	var spawn_position = position + offset
 	sprite.position = spawn_position
+	sprite.scale = Vector2(2.0, 2.0)
 	get_tree().current_scene.add_child(sprite)
 	# Wait 2 seconds then free the sprite
 	await get_tree().create_timer(2.0).timeout

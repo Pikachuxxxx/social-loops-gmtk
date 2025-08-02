@@ -7,8 +7,8 @@ var g_groups: Array[GroupNode] = []
 var zuck: Zuck
 
 var groupPairCount: Dictionary = {}
-#const maxg_groups = 7 # just to avoid any crashes for now and maintain perf
-const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET, Color.CRIMSON, Color.LIGHT_CORAL]
+
+const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET, Color.CRIMSON, Color.LIGHT_CORAL, Color.YELLOW, Color.RED, Color.GHOST_WHITE, Color.DEEP_SKY_BLUE, Color.DARK_SALMON, Color.DARK_ORANGE, Color.DARK_GREEN, Color.DARK_CYAN, Color.YELLOW_GREEN]
 var mousePosition: Vector2 = Vector2(0,0)
 var wiggle = Wiggle.new()
 
@@ -67,6 +67,12 @@ func _process(delta: float) -> void:
 				for group in g_groups:
 					group.erase_node(node.id)
 	)
+
+	for node in g_nodes:
+		if node.isDragging:
+			node.update_sprite_scale(2.4)
+		else:
+			node.update_sprite_scale(2)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
