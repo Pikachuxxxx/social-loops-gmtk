@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://cer2qc2148q0b"]
+
+[ext_resource type="Texture2D" uid="uid://c7we35f0c0t77" path="res://assets/image/dps/tech_bro.png" id="1_g2tpb"]
+[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_p68g4"]
+
+[resource]
+script = ExtResource("1_p68g4")
+user_name = "terminal_chad_88💻"
+occupation = "Linux Kernel Developer"
+display_pic = ExtResource("1_g2tpb")
+age = 22
+variant_idx = 0
+persona_type = 0
+likes = 530
+dislikes = 4192
+drama = 0.0
+tolerance = 0.0
+influence = 0.0
+metadata/_custom_type_script = "uid://cb5ttynshhrgo"
