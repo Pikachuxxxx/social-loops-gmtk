@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sqflj4ksfawq"]
+[gd_scene load_steps=7 format=3 uid="uid://sqflj4ksfawq"]
 
 [ext_resource type="FontFile" uid="uid://6u287sibax77" path="res://Fonts/PixelifySans-SemiBold.ttf" id="1_jgmso"]
 [ext_resource type="FontFile" uid="uid://bat7468vte4d3" path="res://Fonts/PixelifySans-Regular.ttf" id="2_8dpai"]
@@ -21,11 +21,16 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1wpbu"]
 font = ExtResource("2_8dpai")
-font_size = 23
-font_color = Color(0.389287, 0.389287, 0.389287, 1)
+font_size = 18
+font_color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qb3by"]
+font = ExtResource("2_8dpai")
+font_size = 12
+font_color = Color(1, 0.291842, 0.382343, 1)
 
 [node name="Post" type="Node2D"]
-scale = Vector2(3.599, 3)
+scale = Vector2(5, 4.168)
 script = SubResource("GDScript_8dpai")
 
 [node name="ShadowPolygon" type="Polygon2D" parent="."]
@@ -37,7 +42,7 @@ polygon = PackedVector2Array(-28, -24, 30, -22, 28, 20, -28, 20)
 [node name="PostPolygon" type="Polygon2D" parent="."]
 position = Vector2(-0.699605, -5.55057)
 scale = Vector2(1.17196, 0.863755)
-polygon = PackedVector2Array(-28, -24, 30, -23, 29, 20, -28, 21)
+polygon = PackedVector2Array(-28, -24, 30, -23, 29.515, -2.14463, 29, 20, -28, 21)
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(18.4696, -3.94437)
@@ -69,11 +74,23 @@ label_settings = SubResource("LabelSettings_8dpai")
 
 [node name="PostMessage" type="Label" parent="."]
 texture_filter = 1
-offset_left = -27.2846
-offset_top = -12.7561
-offset_right = 197.715
-offset_bottom = 48.2439
+offset_left = -30.0
+offset_top = -13.0
+offset_right = 206.0
+offset_bottom = 57.0
 scale = Vector2(0.254066, 0.313502)
 text = "Why is the sky blue? 
 Stupid nature!"
 label_settings = SubResource("LabelSettings_1wpbu")
+autowrap_mode = 3
+
+[node name="PostType" type="Label" parent="."]
+texture_filter = 1
+offset_left = 9.0
+offset_top = -22.0
+offset_right = 113.0
+offset_bottom = -4.0
+scale = Vector2(0.254066, 0.313502)
+text = "[Debug] Political"
+label_settings = SubResource("LabelSettings_qb3by")
+autowrap_mode = 3

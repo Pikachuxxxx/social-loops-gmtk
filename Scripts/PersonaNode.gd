@@ -14,7 +14,7 @@ var buffer: Array[Vector2] = []
 var persona: Persona
 
 const SPAWN_OFFSET: int = -50
-const POST_ALIVE_TIME: float = 4.0
+const POST_ALIVE_TIME: float = 5.0
 
 func init (person: Persona):
 	persona = person
@@ -85,7 +85,8 @@ func set_post(post: Post) -> void:
 		$NodeCollisionShape2D/Post.visible = true
 		$NodeCollisionShape2D/Post/UserName.text = persona.user_name
 		## TODO: choose a post from post bank based on the type and intent etc.
-		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_string_from_value(post.post_type)
+		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_random_message(persona.persona_type, post.post_type)
+		$NodeCollisionShape2D/Post/PostType.text = "[Debug]" + PT.get_string_from_value(post.post_type)
 		deactivate_post_ui($NodeCollisionShape2D/Post)
 
 func update_feed(post: Post, group: Group) -> void:
