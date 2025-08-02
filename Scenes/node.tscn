@@ -7,6 +7,7 @@
 radius = 29.0172
 
 [node name="Node" type="StaticBody2D"]
+texture_filter = 1
 script = ExtResource("1_5g7os")
 
 [node name="NodeCollisionShape2D" type="CollisionShape2D" parent="."]
