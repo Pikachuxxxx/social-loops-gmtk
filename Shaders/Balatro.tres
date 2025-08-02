@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cimd6ew5o12xl"]
+
+[ext_resource type="Shader" uid="uid://bjwq8jti45nvd" path="res://Shaders/balatro.gdshader" id="1_mmo5c"]
+
+[resource]
+shader = ExtResource("1_mmo5c")

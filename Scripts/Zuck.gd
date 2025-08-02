@@ -13,13 +13,13 @@ func get_random_liked_index(bitfield: int, enum_size: int) -> int:
 	var indices = []
 	for i in range(enum_size):
 		if bitfield & (1 << i):
-			indices.append(i)
+			indices.append(1 << i)
 	if indices.size() > 0:
 		return indices[randi() % indices.size()]
 	return -1
 
-func process(delta: float, groups: Array[GroupNode], nodes: Array[PersonaNode]) -> void:
-	for group in groups:
+func process(delta: float) -> void:
+	for group in Globals.g_groups:
 		if group.nodeIds.size() < 3:
 			continue
 		
@@ -32,7 +32,7 @@ func process(delta: float, groups: Array[GroupNode], nodes: Array[PersonaNode]) 
 		print("Group %d is posting" % group.id)
 		# Randomly pick a persona to post
 		var postingPersonaID: int = randi() % group.nodeIds.size()
-		var postingPersonaNode: PersonaNode = nodes[group.nodeIds[postingPersonaID]]
+		var postingPersonaNode: PersonaNode = Globals.g_nodes[group.nodeIds[postingPersonaID]]
 		if not postingPersonaNode or not postingPersonaNode.persona:
 			continue
 		var likes: int = postingPersonaNode.persona.likes
@@ -43,12 +43,5 @@ func process(delta: float, groups: Array[GroupNode], nodes: Array[PersonaNode]) 
 		# TODO: In future we can have pre-defined curated posts based on the persona's likes etc.
 		# For now, we just create a new post with the liked post type
 		post.init(postingPersonaNode.id, likedPostIndex)
-
-		for nodeId in group.nodeIds:
-			# Skip if the node is the same as the persona posting
-			if nodeId == postingPersonaNode.id:
-				continue
-			var node: PersonaNode = nodes[nodeId]
-			if node and node.persona:
-				node.update_feed(post)
+		group.make_post(post)
 	pass

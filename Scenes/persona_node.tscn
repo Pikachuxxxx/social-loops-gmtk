@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://smojxhm1kxsa"]
+[gd_scene load_steps=8 format=3 uid="uid://d08vim1jhug0x"]
 
 [ext_resource type="Script" uid="uid://hhgqihr18wkj" path="res://Scripts/PersonaNode.gd" id="1_wxeb3"]
-[ext_resource type="Texture2D" uid="uid://dyaf8gh4ye41s" path="res://assets/image/dps/karen.png" id="2_nec11"]
+[ext_resource type="Texture2D" uid="uid://chy3jek5cemcg" path="res://assets/image/dps/karen.png" id="2_nec11"]
+[ext_resource type="Material" uid="uid://bn3347xbvwdlb" path="res://Shaders/Balatro_card.tres" id="2_u7djs"]
+[ext_resource type="PackedScene" uid="uid://d3vdrjykr2i0t" path="res://FX/DownvotesFX.tscn" id="3_68h33"]
+[ext_resource type="PackedScene" uid="uid://bst4gjipcf2p3" path="res://FX/LikesFX.tscn" id="4_6mfyq"]
+[ext_resource type="PackedScene" uid="uid://sqflj4ksfawq" path="res://Scenes/post.tscn" id="5_6mfyq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2q8x"]
 radius = 34.0
@@ -18,6 +22,7 @@ debug_color = Color(0.147645, 0.504931, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="NodeCollisionShape2D"]
 texture_filter = 1
+material = ExtResource("2_u7djs")
 position = Vector2(-0.499999, 0)
 scale = Vector2(1.93, 1.93)
 texture = ExtResource("2_nec11")
@@ -33,3 +38,14 @@ text = "let_me_speak_77📱"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Post" parent="NodeCollisionShape2D" instance=ExtResource("5_6mfyq")]
+visible = false
+position = Vector2(84, -116)
+script = null
+
+[node name="DownvotesFX" parent="NodeCollisionShape2D" instance=ExtResource("3_68h33")]
+position = Vector2(0, -40)
+
+[node name="LikesFx" parent="NodeCollisionShape2D" instance=ExtResource("4_6mfyq")]
+position = Vector2(0, -40)

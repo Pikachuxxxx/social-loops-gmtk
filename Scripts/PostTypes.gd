@@ -15,3 +15,15 @@ enum POST_TYPE {
 	ASTROLOGY       = 1 << 12,  # 4096
 	MAX_POST_TYPES  = 13
 }
+
+static func get_string_from_value(value: int) -> String:
+	for key in POST_TYPE:
+		if POST_TYPE[key] == (value):
+			return key
+	return "UNKNOWN"
+
+static func get_string_from_key(key: int) -> String:
+	for k in POST_TYPE:
+		if k == key:
+			return POST_TYPE[k]
+	return "UNKNOWN"

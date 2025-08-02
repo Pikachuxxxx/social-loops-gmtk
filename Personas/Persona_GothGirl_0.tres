@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Persona" load_steps=3 format=3 uid="uid://bmisk12a3pbub"]
 
-[ext_resource type="Script" uid="uid://cb5ttynshhrgo" path="res://Scripts/Persona.gd" id="1_71d3m"]
-[ext_resource type="Texture2D" uid="uid://cyiqhanpole3q" path="res://assets/image/dps/goth_person.png" id="1_jivxv"]
+[ext_resource type="Script" uid="uid://bfl02jfhtlrca" path="res://Scripts/Persona.gd" id="1_71d3m"]
+[ext_resource type="Texture2D" uid="uid://c0c1vea0r4fcw" path="res://assets/image/dps/goth_person.png" id="1_jivxv"]
 
 [resource]
 script = ExtResource("1_71d3m")
@@ -11,9 +11,8 @@ display_pic = ExtResource("1_jivxv")
 age = 19
 variant_idx = 0
 persona_type = 0
-likes = 100
-dislikes = 274
+likes = 356
+dislikes = 7186
 drama = 0.0
 tolerance = 0.0
 influence = 0.0
-metadata/_custom_type_script = "uid://cb5ttynshhrgo"
