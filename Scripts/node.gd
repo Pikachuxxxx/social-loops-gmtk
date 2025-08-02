@@ -19,7 +19,7 @@ func _ready() -> void:
 """
 
 func update_texture (texture):
-	$Sprite2D.texture = texture
+	$NodeCollisionShape2D/Sprite2D.texture = texture
 
 func dragOn ():
 	isDragging = true
