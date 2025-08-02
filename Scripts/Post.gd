@@ -8,6 +8,31 @@ const PT = preload("res://Scripts/PostTypes.gd")
 @export var valence: float
 @export var base_engagement: float
 var likes_count: int
-var who_liked: Array
-var who_posted: Node
+var dislikes_count: int
+var who_liked: Array[int]
+var who_posted: PersonaNode
 var is_active: bool
+
+func _init(who_posted: PersonaNode, post_type: PT.POST_TYPE):
+	likes_count = 0
+	who_liked = []
+	is_active = true
+	self.who_posted = who_posted
+	self.post_type = post_type
+	# TODO: In future iteration the node's factors will be used to determine these values in addition to being randomized and also based on the post type
+	# For now, they are just randomized
+	chaos = randf() * 2.0 - 1.0
+	valence = randf() * 2.0 - 1.0
+	base_engagement = randf() * 2.0 - 1.0
+
+
+func like(persona: PersonaNode):
+	if persona and not who_liked.has(persona.id):
+		who_liked.append(persona.id)
+		likes_count += 1
+
+func dislike(persona: PersonaNode):
+	if persona and who_liked.has(persona.id):
+		who_liked.erase(persona.id)
+		dislikes_count += 1
+		likes_count -= 1

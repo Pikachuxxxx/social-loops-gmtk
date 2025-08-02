@@ -12,5 +12,6 @@ enum POST_TYPE {
 	MEME            = 1 << 9,  # 512
 	RANT            = 1 << 10, # 1024
 	CELEB_GOSSIP    = 1 << 11, # 2048
-	ASTROLOGY       = 1 << 12  # 4096
+	ASTROLOGY       = 1 << 12,  # 4096
+	MAX_POST_TYPES  = 13
 }

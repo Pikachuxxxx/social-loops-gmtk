@@ -27,7 +27,7 @@ static func perpendicular_distance(point: Vector2, line_first_point: Vector2, li
 
 # Uses Vector2 to return gId and nId
 # nId is after which node in the group is the new node to be added
-static func is_node_touching_group (draggingNode: MyNode, nodes: Array[MyNode], groups: Array[Group]) -> Vector2:
+static func is_node_touching_group (draggingNode: PersonaNode, nodes: Array[PersonaNode], groups: Array[GroupNode]) -> Vector2:
 	var point = draggingNode.position
 	for gid in range(groups.size()):
 		var group = groups[gid]
@@ -45,7 +45,7 @@ static func is_node_touching_group (draggingNode: MyNode, nodes: Array[MyNode], 
 				return Vector2(gid, nId)
 	return Vector2(-1, -1)
 
-static func preprocess_groups(pairsCount: Dictionary, groups: Array[Group]) -> void:
+static func preprocess_groups(pairsCount: Dictionary, groups: Array[GroupNode]) -> void:
 	pairsCount.clear()
 	for group in groups:
 		var n = group.nodeIds.size()
