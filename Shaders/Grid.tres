@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bqi0s5jfq76s1"]
+
+[ext_resource type="Shader" uid="uid://c12xsv3otup34" path="res://Shaders/Grid.gdshader" id="1_c1h7l"]
+
+[resource]
+shader = ExtResource("1_c1h7l")
+shader_parameter/dot_spacing = Vector2(0.1, 0.1)
+shader_parameter/dot_radius = 0.03
+shader_parameter/dot_color = Vector4(1, 1, 1, 1)
+shader_parameter/bg_color = Vector4(0, 0, 0, 1)

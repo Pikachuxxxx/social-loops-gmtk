@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bn3347xbvwdlb"]
+
+[ext_resource type="Shader" uid="uid://dfv5l6wakhhb3" path="res://Shaders/balatro_card_shine.gdshader" id="1_m4o5u"]
+
+[resource]
+shader = ExtResource("1_m4o5u")
