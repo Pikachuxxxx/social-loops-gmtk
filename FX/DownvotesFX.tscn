@@ -15,8 +15,9 @@ angle_min = 1.07288e-05
 angle_max = 1.07288e-05
 spread = 26.737
 gravity = Vector3(0, -98, 0)
-scale_max = 5.0
-scale_over_velocity_max = 2.0
+scale_min = 0.25
+scale_max = 2.0
+scale_over_velocity_max = 1.0
 turbulence_enabled = true
 turbulence_noise_scale = 8.081
 

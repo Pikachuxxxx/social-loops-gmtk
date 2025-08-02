@@ -13,7 +13,7 @@ func get_random_liked_index(bitfield: int, enum_size: int) -> int:
 	var indices = []
 	for i in range(enum_size):
 		if bitfield & (1 << i):
-			indices.append(i)
+			indices.append(1 << i)
 	if indices.size() > 0:
 		return indices[randi() % indices.size()]
 	return -1

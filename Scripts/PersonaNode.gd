@@ -65,15 +65,15 @@ func spawn_comment_sprite(position: Vector2):
 	await get_tree().create_timer(2.0).timeout
 	sprite.queue_free()
 
-func get_bitfield_post_types(persona: Persona) -> Array[int]:
-	var liked_post_types: Array[int] = []
+func get_bitfield_post_types(interests: int) -> Array[int]:
+	var post_types: Array[int] = []
 	for key in PT.POST_TYPE:
 		if key == "MAX_POST_TYPES":
 			continue
 		var flag = PT.POST_TYPE[key]
-		if persona.likes & flag:
-			liked_post_types.append(flag)
-	return liked_post_types
+		if interests & flag:
+			post_types.append(flag)
+	return post_types
 
 func deactivate_post_ui(postNode: Node):
 	await get_tree().create_timer(2.0).timeout
@@ -94,8 +94,11 @@ func update_feed(post: Post) -> void:
 		return
 	# This is where the persona reacts to the post
 	print("Persona %s reacting to post of type %d by %d" % [persona.user_name, post.post_type, post.who_posted])
-	var likedPostTypes: Array[int] = get_bitfield_post_types(persona)
-	var dislikedPostTypes: Array[int] = get_bitfield_post_types(persona)
+	var likedPostTypes: Array[int] = get_bitfield_post_types(persona.likes)
+	var dislikedPostTypes: Array[int] = get_bitfield_post_types(persona.dislikes)
+	print("post.post_type: %d" % post.post_type)
+	print("likedPostTypes: %s" % str(likedPostTypes))
+	print("dislikedPostTypes: %s" % str(dislikedPostTypes))
 	if post.post_type in likedPostTypes:
 		post.like(persona)
 		print("\tSpawn like sprite at position %s" % position)

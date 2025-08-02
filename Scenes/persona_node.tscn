@@ -43,5 +43,7 @@ position = Vector2(84, -116)
 script = null
 
 [node name="DownvotesFX" parent="NodeCollisionShape2D" instance=ExtResource("3_68h33")]
+position = Vector2(0, -40)
 
 [node name="LikesFx" parent="NodeCollisionShape2D" instance=ExtResource("4_6mfyq")]
+position = Vector2(0, -40)
