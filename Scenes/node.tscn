@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy5xqd3qkusq5"]
 
 [ext_resource type="Script" uid="uid://03mqv4t3anld" path="res://Scripts/node.gd" id="1_5g7os"]
-[ext_resource type="Texture2D" uid="uid://bjtvpqne35bbd" path="res://Textures/ProfilePicDefAlpha.png" id="2_6b8r6"]
+[ext_resource type="Texture2D" uid="uid://dyaf8gh4ye41s" path="res://assets/image/dps/karen.png" id="2_6b8r6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2q8x"]
 radius = 16.0
@@ -16,6 +16,7 @@ one_way_collision_margin = 3.5
 debug_color = Color(0.147645, 0.504931, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="NodeCollisionShape2D"]
+texture_filter = 1
 position = Vector2(-0.499999, 0)
-scale = Vector2(0.0783333, 0.078373)
+scale = Vector2(1.93, 1.93)
 texture = ExtResource("2_6b8r6")
