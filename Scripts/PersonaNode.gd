@@ -14,6 +14,7 @@ var buffer: Array[Vector2] = []
 var persona: Persona
 
 const SPAWN_OFFSET: int = -50
+const POST_ALIVE_TIME: float = 4.0
 
 func init (person: Persona):
 	persona = person
@@ -76,7 +77,7 @@ func get_bitfield_post_types(interests: int) -> Array[int]:
 	return post_types
 
 func deactivate_post_ui(postNode: Node):
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(POST_ALIVE_TIME).timeout
 	postNode.visible = false
 
 func set_post(post: Post) -> void:
@@ -87,7 +88,7 @@ func set_post(post: Post) -> void:
 		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_string_from_value(post.post_type)
 		deactivate_post_ui($NodeCollisionShape2D/Post)
 
-func update_feed(post: Post) -> void:
+func update_feed(post: Post, group: Group) -> void:
 	# If self posted don't react, but make the post
 	if(post.who_posted == id):
 		set_post(post)

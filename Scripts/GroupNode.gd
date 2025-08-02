@@ -11,6 +11,7 @@ var onGroupUpdate: Callable = func ():
 	pass
 var lastPostTime: float = 0.0
 signal post_created(post)
+var group: Group
 
 func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass) -> void:
 	isInProgress = _isInProgress
@@ -36,4 +37,4 @@ func erase_node (nodeId: int, nodeCB: Callable):
 	onGroupUpdate.call()
 
 func make_post(post):
-	emit_signal("post_created", post)
+	emit_signal("post_created", post, group)

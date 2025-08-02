@@ -41,11 +41,14 @@ autowrap_mode = 2
 
 [node name="Post" parent="NodeCollisionShape2D" instance=ExtResource("5_6mfyq")]
 visible = false
+z_index = -50
 position = Vector2(84, -116)
 script = null
 
 [node name="DownvotesFX" parent="NodeCollisionShape2D" instance=ExtResource("3_68h33")]
 position = Vector2(0, -40)
+lifetime = 3.0
 
 [node name="LikesFx" parent="NodeCollisionShape2D" instance=ExtResource("4_6mfyq")]
 position = Vector2(0, -40)
+lifetime = 3.0
