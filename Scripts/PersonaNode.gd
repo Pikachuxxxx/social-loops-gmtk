@@ -93,15 +93,15 @@ func update_feed(post: Post) -> void:
 	var dislikedPostTypes: Array[int] = get_bitfield_post_types(persona)
 	if post.post_type in likedPostTypes:
 		post.like(persona)
-		print("Spawn like sprite at position %s" % position)
+		print("\tSpawn like sprite at position %s" % position)
 		spawn_like_sprite(position)
 	elif post.post_type in dislikedPostTypes:
 		post.dislike(persona)
-		print("Spawn dislike sprite at position %s" % position)
+		print("\tSpawn dislike sprite at position %s" % position)
 		spawn_dislike_sprite(position)
 	else:
 		spawn_comment_sprite(position)
-		print("Persona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])
+		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])
 		
 	
 	# todo: show likes and dislikes on the post
