@@ -6,14 +6,13 @@ var groups: Array[Group] = []
 
 var groupPairCount: Dictionary = {}
 
-const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET]
+const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET, Color.CRIMSON, Color.LIGHT_CORAL]
 var mousePosition: Vector2 = Vector2(0,0)
 var wiggle = Wiggle.new()
 
 func _draw() -> void:
 	var _groupPairCount = {}
-	for gid in range(groups.size()):
-		var group = groups[gid]
+	for group in groups:
 		var groupNodeIds = group.nodeIds.duplicate()
 		if group.isInProgress:
 			groupNodeIds.append(-1) # Using -1 to get mouse position for now
@@ -32,11 +31,11 @@ func _draw() -> void:
 			var count = Utils.get_pair_count(groupPairCount, nodeId, nextNodeId)
 			var points = Utils.get_adjacent_line(_groupPairCount[key], count, nodePosition, nextNodePosition)
 
-			draw_line(points[0], points[1], groupColors[gid], 2, false)
+			draw_line(points[0], points[1], groupColors[group.id], 3, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var count = 5
+	var count = 6
 	var radius = 200.0
 	var center = get_viewport_rect().size / 2.0
 	for i in range(count):
@@ -90,9 +89,12 @@ func _input(event: InputEvent) -> void:
 						break
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			if groups.size() > 0:
-				groups[groups.size()-1].isInProgress = false
-				if groups[groups.size()-1].nodeIds.size() <= 1:
-					groups.pop_back()
+				for group in groups:
+					if group.isInProgress == true:
+						group.isInProgress = false
+						if group.nodeIds.size() <= 1:
+							groups.erase(group)
+						break
 				queue_redraw()
 	elif event is InputEventMouseMotion:
 		mousePosition = event.position
