@@ -1,7 +1,7 @@
 extends Node2D
 
 var last_spawn_time: int = 0
-const SPAWN_TIME: int = 15000 # 15 seconds
+const SPAWN_TIME: int = 25000 # 25 seconds
 const NUM_SPAWN: int = 3 # Number of personas to spawn each time
 
 const PERT = preload("res://Scripts/PersonaTypes.gd")

@@ -76,7 +76,7 @@ texture = ExtResource("7_6bp64")
 
 [node name="ZuckAlg" type="Node" parent="."]
 script = ExtResource("2_8gbba")
-post_cooldown_time_sec = 5
+post_cooldown_time_sec = 15
 
 [node name="CheatCodeManager" type="Node2D" parent="."]
 script = ExtResource("9_ynf5e")
