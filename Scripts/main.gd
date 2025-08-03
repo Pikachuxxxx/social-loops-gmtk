@@ -140,7 +140,7 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Followers.text = "Total Followers: " + str(Globals.g_nodes.size())
 
 	# if totalEngagement is less than 0 then restart the entire game
-	if totalEngagement < 0:
+	if totalEngagement <= 0:
 		print("Total Engagement is less than 0, restarting the game")
 		Globals.g_nodes.clear()
 		Globals.g_groups.clear()
