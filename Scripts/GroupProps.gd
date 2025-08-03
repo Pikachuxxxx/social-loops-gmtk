@@ -14,7 +14,7 @@ var color: Color
 var rxns: Array[Reaction] = []
 var total_posts: int = 0
 
-const ENGAGEMENT_DISLIKE_FACTOR: float = 1.0
+const ENGAGEMENT_DISLIKE_FACTOR: float = 0.5
 const ENGAGEMENT_LIKE_FACTOR: float = 1.0
 const ENGAGEMENT_COMMENT_DECAY: float = 0.1
 
