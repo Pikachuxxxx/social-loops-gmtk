@@ -24,7 +24,6 @@ debug_color = Color(0.147645, 0.504931, 0, 0.42)
 visible = false
 z_index = 1
 position = Vector2(84, -116)
-script = null
 
 [node name="Sprite2D" type="Sprite2D" parent="NodeCollisionShape2D"]
 texture_filter = 1

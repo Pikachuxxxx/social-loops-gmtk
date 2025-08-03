@@ -45,10 +45,34 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="EngagementScore" type="Label" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 596.0
+offset_bottom = 57.0
+text = "Engagement: 0"
+label_settings = SubResource("LabelSettings_ynf5e")
+
+[node name="TotalLikes" type="Label" parent="CanvasLayer"]
+offset_left = 482.0
+offset_top = 9.0
+offset_right = 1074.0
+offset_bottom = 65.0
+text = "Total Likes: 0"
+label_settings = SubResource("LabelSettings_ynf5e")
+
+[node name="Followers" type="Label" parent="CanvasLayer"]
+offset_left = 1127.0
+offset_top = 13.0
+offset_right = 1719.0
+offset_bottom = 69.0
+text = "Total Followers: 0"
+label_settings = SubResource("LabelSettings_ynf5e")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -505
 material = ExtResource("6_6bp64")
-position = Vector2(512, 512)
+position = Vector2(1, 0)
 scale = Vector2(1468.04, 1024)
 texture = ExtResource("7_6bp64")
 
@@ -56,20 +80,7 @@ texture = ExtResource("7_6bp64")
 script = ExtResource("2_8gbba")
 post_cooldown_time_sec = 5
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2"]
-offset_left = 4.0
-offset_top = 8.0
-offset_right = 221.0
-offset_bottom = 51.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="CanvasLayer2/MarginContainer"]
-layout_mode = 2
-text = "Engagement: 0      Satisfaction: 0"
-label_settings = SubResource("LabelSettings_ynf5e")
-
 [node name="CheatCodeManager" type="Node2D" parent="."]
 script = ExtResource("9_ynf5e")
+
+[node name="Cheatcodes" type="Sprite2D" parent="CheatCodeManager"]

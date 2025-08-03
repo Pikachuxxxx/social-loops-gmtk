@@ -1,18 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://sqflj4ksfawq"]
+[gd_scene load_steps=6 format=3 uid="uid://sqflj4ksfawq"]
 
 [ext_resource type="FontFile" uid="uid://6u287sibax77" path="res://Fonts/PixelifySans-SemiBold.ttf" id="1_jgmso"]
 [ext_resource type="FontFile" uid="uid://bat7468vte4d3" path="res://Fonts/PixelifySans-Regular.ttf" id="2_8dpai"]
-
-[sub_resource type="GDScript" id="GDScript_8dpai"]
-script/source = "extends Node2D
-class_name PostNode
-
-const PT = preload(\"res://Scripts/PostTypes.gd\")
-
-func _init():
-	pass
-	
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_8dpai"]
 font = ExtResource("1_jgmso")
@@ -23,7 +12,7 @@ font_color = Color(0, 0, 0, 1)
 line_spacing = -9.65
 font = ExtResource("2_8dpai")
 font_size = 43
-font_color = Color(0.223103, 0.223103, 0.223103, 1)
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qb3by"]
 font = ExtResource("2_8dpai")
@@ -32,7 +21,6 @@ font_color = Color(1, 0.291842, 0.382343, 1)
 
 [node name="Post" type="Node2D"]
 scale = Vector2(5, 4.168)
-script = SubResource("GDScript_8dpai")
 
 [node name="ShadowPolygon" type="Polygon2D" parent="."]
 position = Vector2(-0.303452, 3.53341)

@@ -54,3 +54,25 @@ func erase_node (nodeId: int, nodeCB: Callable):
 
 func make_post(post):
 	emit_signal("post_created", post, groupProps)
+
+func get_engagement() -> float:
+	return groupProps.engagement
+
+func get_engagement_percentage() -> int:
+	var perct : int=  int(groupProps.engagement * 100) if groupProps.total_posts > 0 else 0
+	return perct
+
+func get_total_likes() -> int:
+	return groupProps.total_likes
+
+func get_harmony() -> float:
+	return groupProps.harmony
+
+func get_drama() -> float:
+	return groupProps.drama
+
+func get_liked_posts() -> int:
+	return groupProps.liked_posts
+
+func get_disliked_posts() -> int:
+	return groupProps.disliked_posts

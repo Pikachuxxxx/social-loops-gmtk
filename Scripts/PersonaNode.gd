@@ -146,32 +146,39 @@ func set_post(post: Post, color:Color) -> void:
 			$NodeCollisionShape2D/Post/PostType.text = ""
 		deactivate_post_ui($NodeCollisionShape2D/Post)
 
+func post_liked() ->void:
+	$NodeCollisionShape2D/LikesFx.restart()
+	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/like.wav")
+	$NodeCollisionShape2D/SoundFX.play()
+func post_disliked() -> void:
+	$NodeCollisionShape2D/DownvotesFX.restart()
+	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/dislike.wav")
+	$NodeCollisionShape2D/SoundFX.play()
+
+func post_commented() -> void:
+	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/comment.wav")
+	$NodeCollisionShape2D/SoundFX.play()	
+
+
 func update_feed(post: Post, groupProps: GroupProps) -> void:
 	# If self posted don't react, but make the post
 	if(post.who_posted == id):
 		set_post(post, groupProps.color)
 		return
 
-	# This is where the persona reacts to the post
-	print("Persona %s reacting to post of type %d by %d" % [persona.user_name, post.post_type, post.who_posted])
+	# This is where the persona reacts to the post and then that is also added to group
+	print("Persona %s reacting to post of type %d" % [persona.user_name, post.post_type])
 	var likedPostTypes: Array[int] = get_bitfield_post_types(persona.likes)
 	var dislikedPostTypes: Array[int] = get_bitfield_post_types(persona.dislikes)
-	print("post.post_type: %d" % post.post_type)
-	print("likedPostTypes: %s" % str(likedPostTypes))
-	print("dislikedPostTypes: %s" % str(dislikedPostTypes))
 	if post.post_type in likedPostTypes:
 		post.like(persona)
-		print("\tSpawn like sprite at position %s" % position)
-		$NodeCollisionShape2D/LikesFx.restart()
-		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/like.wav")
-		$NodeCollisionShape2D/SoundFX.play()
+		post_liked()
 	elif post.post_type in dislikedPostTypes:
 		post.dislike(persona)
-		print("\tSpawn dislike sprite at position %s" % position)
-		$NodeCollisionShape2D/DownvotesFX.restart()
-		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/dislike.wav")
-		$NodeCollisionShape2D/SoundFX.play()
+		post_disliked()
 	else:
-		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/comment.wav")
-		$NodeCollisionShape2D/SoundFX.play()
-		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])
+		post.comment(persona, "I don't like this post!")
+		post_commented()
+
+	# update group with reaction
+	groupProps.add_reaction(post)

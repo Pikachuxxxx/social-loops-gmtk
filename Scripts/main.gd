@@ -71,6 +71,17 @@ func _process(delta: float) -> void:
 			node.update_sprite_scale(2.4)
 		else:
 			node.update_sprite_scale(2)
+	# update the groups score
+	var totalEngagement: int = 0
+	var totalLikes: int = 0
+	for group in Globals.g_groups:
+		totalEngagement += group.get_engagement_percentage()
+		totalLikes += group.get_total_likes()
+	if Globals.g_groups.size() > 0:
+		var averageEngagement = totalEngagement / Globals.g_groups.size()
+		$CanvasLayer/EngagementScore.text = "Total Engagement: " + str(averageEngagement) + "%"
+	$CanvasLayer/TotalLikes.text = "Total Likes: " + str(totalLikes) + "❤️"
+	$CanvasLayer/Followers.text = "Total Followers: " + str(Globals.g_nodes.size())
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
