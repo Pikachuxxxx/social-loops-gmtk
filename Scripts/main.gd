@@ -6,10 +6,6 @@ const nodeScene: PackedScene = preload("res://Scenes/persona_node.tscn")
 var zuck: Zuck
 
 var groupPairCount: Dictionary = {}
-
-const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET, Color.CRIMSON, Color.LIGHT_CORAL, Color.YELLOW, Color.RED, Color.GHOST_WHITE, Color.DEEP_SKY_BLUE, Color.DARK_SALMON, Color.DARK_ORANGE, Color.DARK_GREEN, Color.DARK_CYAN, Color.YELLOW_GREEN]
-
-
 var mousePosition: Vector2 = Vector2(0,0)
 var wiggle = Wiggle.new()
 
@@ -34,7 +30,7 @@ func _draw() -> void:
 			var count = Utils.get_pair_count(groupPairCount, nodeId, nextNodeId)
 			var points = Utils.get_adjacent_line(_groupPairCount[key], count, nodePosition, nextNodePosition)
 
-			draw_line(points[0], points[1], groupColors[group.id], 3, false)
+			draw_line(points[0], points[1], group.color, 3, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
