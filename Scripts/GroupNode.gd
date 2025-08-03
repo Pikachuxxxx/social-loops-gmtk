@@ -22,18 +22,18 @@ func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass
 func add_node_id (nodeId: int, nodeCB: Callable) -> void:
 	if not nodeIds.has(nodeId): # Use dictionary instead?
 		nodeIds.append(nodeId)
-		self.connect("post_created", nodeCB)
+		#self.connect("post_created", nodeCB)
 		onGroupUpdate.call()
 
 func insert_node_id (insertIdx: int, nodeId: int, nodeCB: Callable) -> void:
 	if not nodeIds.has(nodeId): # Use dictionary instead?
 		nodeIds.insert(insertIdx, nodeId)
-		self.connect("post_created", nodeCB)
+		#self.connect("post_created", nodeCB)
 		onGroupUpdate.call()
 
 func erase_node (nodeId: int, nodeCB: Callable):
 	nodeIds.erase(nodeId)
-	self.disconnect("post_created", nodeCB)
+	#self.disconnect("post_created", nodeCB)
 	onGroupUpdate.call()
 
 func make_post(post):

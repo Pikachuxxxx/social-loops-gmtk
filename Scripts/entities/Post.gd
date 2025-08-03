@@ -7,3 +7,4 @@ var startAt: int = 0
 var endAt: int = 0
 var rxns: Array[Reaction] = []
 var nodeId: int = -1
+var isTriggered: bool = false

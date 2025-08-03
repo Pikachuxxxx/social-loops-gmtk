@@ -18,8 +18,29 @@ static func process() -> void:
 	var currTime = Time.get_ticks_msec()
 	if currTime - prevTime > 3 * 1000:
 		print(currTime)
-		var activePosts = PostManager.get_active_posts(currTime)
-		print("Active Posts: " + str(activePosts))
+		var activePostsCount = PostManager.get_active_posts_count(currTime)
+		print("Active Posts: " + str(activePostsCount))
+		var metrics2 = PostManager.get_global_metrics()
+		var totalLikes = PostManager._debug_get_global_metrics()
+		print("Engagement: " + str(metrics2.x) + ", Satisfaction: " + str(metrics2.y) + ", Total Likes: " + str(totalLikes))
 		prevTime = currTime
+	
 	PostManager.process(currTime)
-	pass
+	
+	var activePosts: Array[XPost] = PostManager.get_active_posts(currTime)
+	for activePost in activePosts:
+		if currTime > activePost.startAt and !activePost.isTriggered:
+			activePost.isTriggered = true
+			var node = Globals.get_persona_node(activePost.nodeId)
+			node.set_xpost(activePost)
+			
+		for rxn in activePost.rxns:
+			if currTime > rxn.startAt and !rxn.isTriggered:
+				rxn.isTriggered = true
+				var rxnNode = Globals.get_persona_node(rxn.nodeId)
+				if rxn.type == Reaction.RxnType.LIKE:
+					rxnNode.animate_likes()
+				elif rxn.type == Reaction.RxnType.DISLIKE:
+					rxnNode.animate_dislikes()
+				elif rxn.type == Reaction.RxnType.COMMENT:
+					rxnNode.animate_comment()

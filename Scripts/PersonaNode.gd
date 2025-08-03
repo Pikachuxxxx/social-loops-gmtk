@@ -26,7 +26,6 @@ Things to worry about: What if user adds everyone in one group?
 
 const PT = preload("res://Scripts/PostTypes.gd")
 const PERT = preload("res://Scripts/PersonaTypes.gd")
-const pixelFont = preload("res://Fonts/PixelifySans-Regular.ttf")
 const LikeFX = preload("res://FX/LikesFX.tscn")
 const DownvotesFX = preload("res://FX/DownvotesFX.tscn")
 
@@ -48,7 +47,7 @@ func init (person: Persona):
 	$NodeCollisionShape2D/Label.position += Vector2(0,85)
 	
 	var labelSettings = LabelSettings.new()
-	labelSettings.font = pixelFont
+	labelSettings.font = Globals.pixelFont
 	labelSettings.font_color = Color.BLACK
 	labelSettings.font_size = 16
 	$NodeCollisionShape2D/Label.label_settings = labelSettings
@@ -111,6 +110,25 @@ func set_post(post: Post) -> void:
 		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_random_message(persona.persona_type, post.post_type)
 		$NodeCollisionShape2D/Post/PostType.text = "[Debug]" + PT.get_string_from_value(post.post_type)
 		deactivate_post_ui($NodeCollisionShape2D/Post)
+		
+func set_xpost (post: XPost) -> void:
+	if persona and post:
+		$NodeCollisionShape2D/Post.visible = true
+		$NodeCollisionShape2D/Post/UserName.text = persona.user_name
+		## TODO: choose a post from post bank based on the type and intent etc.
+		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_random_message(persona.persona_type, post.type)
+		$NodeCollisionShape2D/Post/PostType.text = "[Debug]" + PT.get_string_from_value(post.type)
+		deactivate_post_ui($NodeCollisionShape2D/Post)
+
+func animate_likes () -> void:
+	$NodeCollisionShape2D/LikesFx.restart()
+	
+func animate_dislikes () -> void:
+	$NodeCollisionShape2D/DownvotesFX.restart()
+	
+func animate_comment () -> void:
+	spawn_comment_sprite(position)
+
 
 func update_feed(post: Post, group: Group) -> void:
 	# If self posted don't react, but make the post

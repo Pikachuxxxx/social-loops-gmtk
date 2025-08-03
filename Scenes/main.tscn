@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcqben84wg4cm"]
+[gd_scene load_steps=9 format=3 uid="uid://dcqben84wg4cm"]
 
 [ext_resource type="Script" uid="uid://dh2c3yewo2rj0" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dy1vb32td1nih" path="res://Scripts/Zuck.gd" id="2_8gbba"]
 [ext_resource type="Material" uid="uid://cimd6ew5o12xl" path="res://Shaders/Balatro.tres" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://c4s7cypestpx" path="res://Scripts/CameraController.gd" id="3_kry3j"]
 [ext_resource type="AudioStream" uid="uid://dnsw6scgsmu44" path="res://assets/audio/sfx/idle_bgm.wav" id="4_6bp64"]
-[ext_resource type="Material" uid="uid://bqi0s5jfq76s1" path="res://Shaders/Grid.tres" id="6_6bp64"]
-[ext_resource type="Texture2D" uid="uid://dopd0qy2j0arw" path="res://assets/image/dps/persona_2.png" id="7_6bp64"]
+[ext_resource type="Script" uid="uid://i4ncmr0jhaqs" path="res://Scripts/RemoveFromGroup.gd" id="7_6bp64"]
 [ext_resource type="FontFile" uid="uid://dexwkjgp3ky6i" path="res://Fonts/PixelifySans-Bold.ttf" id="8_344ge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ynf5e"]
@@ -42,13 +41,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -505
-material = ExtResource("6_6bp64")
-position = Vector2(512, 512)
-scale = Vector2(1468.04, 1024)
-texture = ExtResource("7_6bp64")
-
 [node name="ZuckAlg" type="Node" parent="."]
 script = ExtResource("2_8gbba")
 post_cooldown_time_sec = 5
@@ -67,3 +59,19 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Engagement: 0      Satisfaction: 0"
 label_settings = SubResource("LabelSettings_ynf5e")
+
+[node name="Backdrop" type="CanvasLayer" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Backdrop"]
+z_index = 100
+z_as_relative = false
+position = Vector2(325.404, 275.003)
+scale = Vector2(0.630199, 0.547395)
+color = Color(0, 0, 0.105882, 0.866667)
+polygon = PackedVector2Array(-536.979, -502.385, 2536, -517, 2543, 1483, 978.68, 1486.54, -529, 1498)
+
+[node name="RemoveNodeFromGroups" type="Node2D" parent="Backdrop" node_paths=PackedStringArray("mainNode")]
+z_index = 200
+z_as_relative = false
+script = ExtResource("7_6bp64")
+mainNode = NodePath("../..")
