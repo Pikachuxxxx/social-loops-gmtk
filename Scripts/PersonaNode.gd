@@ -137,7 +137,10 @@ func set_post(post: Post) -> void:
 		$NodeCollisionShape2D/Post/UserName.text = persona.user_name
 		## TODO: choose a post from post bank based on the type and intent etc.
 		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_random_message(persona.persona_type, post.post_type)
-		$NodeCollisionShape2D/Post/PostType.text = "[Debug]" + PT.get_string_from_value(post.post_type)
+		if Globals.g_EnableDebugPostTypes:
+			$NodeCollisionShape2D/Post/PostType.text = "[Debug]" + PT.get_string_from_value(post.post_type)
+		else:
+			$NodeCollisionShape2D/Post/PostType.text = ""
 		deactivate_post_ui($NodeCollisionShape2D/Post)
 
 func update_feed(post: Post, group: Group) -> void:
@@ -164,3 +167,7 @@ func update_feed(post: Post, group: Group) -> void:
 		$NodeCollisionShape2D/DownvotesFX.restart()
 		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/dislike.wav")
 		$NodeCollisionShape2D/SoundFX.play()
+	else:
+		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/comment.wav")
+		$NodeCollisionShape2D/SoundFX.play()
+		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])

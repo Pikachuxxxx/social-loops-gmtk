@@ -23,7 +23,7 @@ font_color = Color(0, 0, 0, 1)
 line_spacing = -9.65
 font = ExtResource("2_8dpai")
 font_size = 43
-font_color = Color(0.321728, 0.321728, 0.321728, 1)
+font_color = Color(0.223103, 0.223103, 0.223103, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qb3by"]
 font = ExtResource("2_8dpai")
@@ -43,6 +43,7 @@ polygon = PackedVector2Array(-28, -24, 30, -22, 28, 20, -28, 20)
 [node name="PostPolygon" type="Polygon2D" parent="."]
 position = Vector2(-1.51035, 2.26539)
 scale = Vector2(0.810345, 0.574238)
+color = Color(0.619062, 0.39993, 0.954793, 1)
 polygon = PackedVector2Array(-28, -24, 30, -23, 29.515, -2.14463, 29, 20, -28, 21)
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -58,9 +59,10 @@ scale = Vector2(1.20566, 1.17196)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-21, 20, -16, 20, -18.5, 24)
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="PostPolygonArrow" type="Polygon2D" parent="."]
 position = Vector2(5.2, -10.0768)
 scale = Vector2(1.19534, 1.17196)
+color = Color(0.619062, 0.39993, 0.954793, 1)
 polygon = PackedVector2Array(-21, 20, -16, 20, -18.5, 24)
 
 [node name="UserName" type="Label" parent="."]
@@ -90,12 +92,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PostType" type="Label" parent="."]
 texture_filter = 1
-offset_left = -23.0
-offset_top = -17.9942
-offset_right = 448.0
-offset_bottom = 29.0058
+offset_left = -24.0
+offset_top = -18.4741
+offset_right = 447.0
+offset_bottom = 28.5259
 scale = Vector2(0.0976866, 0.120539)
-text = "[Debug] Political"
 label_settings = SubResource("LabelSettings_qb3by")
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
