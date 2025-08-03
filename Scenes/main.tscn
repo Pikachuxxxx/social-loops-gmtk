@@ -19,7 +19,8 @@ script = ExtResource("1_bo1nx")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6bp64")
-volume_db = -8.937
+volume_db = -7.0
+autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(4, 8)
