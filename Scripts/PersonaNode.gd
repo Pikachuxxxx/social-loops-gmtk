@@ -1,6 +1,29 @@
 extends StaticBody2D
 class_name PersonaNode
 
+"""
+PostTypes are topics that they can post about
+Persona -> [favouritePostTypes: [], hatedPostType: []]
+When a node is created, 
+	a persona is chosen (with a character sprite)
+	add favourite post types
+	random PostTypes are fetched
+		until PostTypes for that persona reached a threshold
+			add more PostType
+			remove PostTypes that are hated
+	the PostType threshold is decided by the time passed in the game 
+	and if the games engagement is doing good or bad. 
+	(more PostType threshold, easier the game is)
+	(less PostType threshold, harder to combine people)
+
+Things to worry about: What if user adds everyone in one group? 
+- They always reach the right people anyways
+- They might get hate (becuase users who dnt want to see the post will also get it) 
+	on it so the satisfaction score will decrease, which is good, but engagement will also
+	increase (sure this works?)
+- We may need to add a cap on how many nodes can the post reach (if the above doesnt work)
+"""
+
 const PT = preload("res://Scripts/PostTypes.gd")
 const PERT = preload("res://Scripts/PersonaTypes.gd")
 const pixelFont = preload("res://Fonts/PixelifySans-Regular.ttf")
@@ -21,7 +44,7 @@ func init (person: Persona):
 	$NodeCollisionShape2D/Sprite2D.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	$NodeCollisionShape2D/Sprite2D.texture = persona.display_pic
 	# Set label below display picture
-	$NodeCollisionShape2D/Label.text = persona.user_name
+	$NodeCollisionShape2D/Label.text = persona.user_name.left(persona.user_name.length() - 1)
 	$NodeCollisionShape2D/Label.position += Vector2(0,85)
 	
 	var labelSettings = LabelSettings.new()

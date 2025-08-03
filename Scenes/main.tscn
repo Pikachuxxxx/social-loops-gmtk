@@ -1,28 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcqben84wg4cm"]
+[gd_scene load_steps=10 format=3 uid="uid://dcqben84wg4cm"]
 
 [ext_resource type="Script" uid="uid://dh2c3yewo2rj0" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dy1vb32td1nih" path="res://Scripts/Zuck.gd" id="2_8gbba"]
 [ext_resource type="Material" uid="uid://cimd6ew5o12xl" path="res://Shaders/Balatro.tres" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://c4s7cypestpx" path="res://Scripts/CameraController.gd" id="3_kry3j"]
-[ext_resource type="AudioStream" uid="uid://cukmeggeb4xxc" path="res://assets/audio/sfx/idle.wav" id="4_jjvhh"]
+[ext_resource type="AudioStream" uid="uid://dnsw6scgsmu44" path="res://assets/audio/sfx/idle_bgm.wav" id="4_6bp64"]
 [ext_resource type="Material" uid="uid://bqi0s5jfq76s1" path="res://Shaders/Grid.tres" id="6_6bp64"]
-[ext_resource type="Texture2D" uid="uid://fmjep2v6yj71" path="res://assets/image/dps/persona_2.png" id="7_6bp64"]
+[ext_resource type="Texture2D" uid="uid://dopd0qy2j0arw" path="res://assets/image/dps/persona_2.png" id="7_6bp64"]
+[ext_resource type="FontFile" uid="uid://dexwkjgp3ky6i" path="res://Fonts/PixelifySans-Bold.ttf" id="8_344ge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ynf5e"]
+font = ExtResource("8_344ge")
+font_size = 35
+font_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bo1nx")
 
-[node name="ZuckAlg" type="Node" parent="."]
-script = ExtResource("2_8gbba")
-post_cooldown_time_sec = 5
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6bp64")
+autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 325)
+position = Vector2(4, 8)
+anchor_mode = 0
 script = ExtResource("3_kry3j")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
-position = Vector2(-576, -325)
-stream = ExtResource("4_jjvhh")
-autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -47,3 +49,22 @@ material = ExtResource("6_6bp64")
 position = Vector2(512, 512)
 scale = Vector2(1468.04, 1024)
 texture = ExtResource("7_6bp64")
+
+[node name="ZuckAlg" type="Node" parent="."]
+script = ExtResource("2_8gbba")
+post_cooldown_time_sec = 5
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2"]
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 221.0
+offset_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer2/MarginContainer"]
+layout_mode = 2
+text = "Engagement: 0      Satisfaction: 0"
+label_settings = SubResource("LabelSettings_ynf5e")
