@@ -6,8 +6,6 @@ const nodeScene: PackedScene = preload("res://Scenes/persona_node.tscn")
 var zuck: Zuck
 
 var groupPairCount: Dictionary = {}
-
-const groupColors: Array[Color] = [Color.GREEN, Color.BLUE, Color.ORANGE, Color.DEEP_PINK, Color.BLUE_VIOLET, Color.CRIMSON, Color.LIGHT_CORAL, Color.YELLOW, Color.RED, Color.GHOST_WHITE, Color.DEEP_SKY_BLUE, Color.DARK_SALMON, Color.DARK_ORANGE, Color.DARK_GREEN, Color.DARK_CYAN, Color.YELLOW_GREEN]
 var mousePosition: Vector2 = Vector2(0,0)
 var wiggle = Wiggle.new()
 
@@ -32,7 +30,7 @@ func _draw() -> void:
 			var count = Utils.get_pair_count(groupPairCount, nodeId, nextNodeId)
 			var points = Utils.get_adjacent_line(_groupPairCount[key], count, nodePosition, nextNodePosition)
 
-			draw_line(points[0], points[1], groupColors[group.id], 3, false)
+			draw_line(points[0], points[1], group.get_group_color(), 3, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -73,6 +71,17 @@ func _process(delta: float) -> void:
 			node.update_sprite_scale(2.4)
 		else:
 			node.update_sprite_scale(2)
+	# update the groups score
+	var totalEngagement: int = 0
+	var totalLikes: int = 0
+	for group in Globals.g_groups:
+		totalEngagement += group.get_engagement_percentage()
+		totalLikes += group.get_total_likes()
+	if Globals.g_groups.size() > 0:
+		var averageEngagement = totalEngagement / Globals.g_groups.size()
+		$CanvasLayer/EngagementScore.text = "Total Engagement: " + str(averageEngagement) + "%"
+	$CanvasLayer/TotalLikes.text = "Total Likes: " + str(totalLikes) + "❤️"
+	$CanvasLayer/Followers.text = "Total Followers: " + str(Globals.g_nodes.size())
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

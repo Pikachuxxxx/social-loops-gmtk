@@ -44,4 +44,3 @@ func process(delta: float) -> void:
 		# For now, we just create a new post with the liked post type
 		post.init(postingPersonaNode.id, likedPostIndex)
 		group.make_post(post)
-	pass
