@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d08vim1jhug0x"]
+[gd_scene load_steps=11 format=3 uid="uid://d08vim1jhug0x"]
 
 [ext_resource type="Script" uid="uid://hhgqihr18wkj" path="res://Scripts/PersonaNode.gd" id="1_wxeb3"]
 [ext_resource type="Texture2D" uid="uid://chy3jek5cemcg" path="res://assets/image/dps/karen.png" id="2_nec11"]
@@ -6,9 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://d3vdrjykr2i0t" path="res://FX/DownvotesFX.tscn" id="3_68h33"]
 [ext_resource type="PackedScene" uid="uid://bst4gjipcf2p3" path="res://FX/LikesFX.tscn" id="4_6mfyq"]
 [ext_resource type="PackedScene" uid="uid://sqflj4ksfawq" path="res://Scenes/post.tscn" id="5_6mfyq"]
+[ext_resource type="FontFile" uid="uid://bat7468vte4d3" path="res://Fonts/PixelifySans-Regular.ttf" id="7_4cpsh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2q8x"]
 radius = 34.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7djs"]
+font = ExtResource("7_4cpsh")
+font_size = 8
+font_color = Color(0.194608, 0.499623, 3.85046e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4cpsh"]
+font = ExtResource("7_4cpsh")
+font_size = 8
+font_color = Color(0.913163, 0, 0.196302, 1)
 
 [node name="PersonaNode" type="StaticBody2D"]
 texture_filter = 1
@@ -54,3 +65,44 @@ position = Vector2(0, -40)
 lifetime = 3.0
 
 [node name="SoundFX" type="AudioStreamPlayer2D" parent="NodeCollisionShape2D"]
+
+[node name="Interests" type="Polygon2D" parent="NodeCollisionShape2D"]
+z_index = 210
+position = Vector2(25.3158, 113.663)
+scale = Vector2(1.29825, 1.26733)
+color = Color(0.820827, 0.802883, 0.903298, 1)
+polygon = PackedVector2Array(9, -93, 11, 5, 180, 3, 179, -96)
+
+[node name="Likes" type="Label" parent="NodeCollisionShape2D/Interests"]
+offset_left = 17.0
+offset_top = -89.0
+offset_right = 164.0
+offset_bottom = -50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Likes:"
+label_settings = SubResource("LabelSettings_u7djs")
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Dislikes" type="Label" parent="NodeCollisionShape2D/Interests"]
+offset_left = 17.0
+offset_top = -39.0
+offset_right = 171.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Dislikes: "
+label_settings = SubResource("LabelSettings_4cpsh")
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Polygon2D2" type="Polygon2D" parent="NodeCollisionShape2D/Interests"]
+z_index = -15
+position = Vector2(5, 7)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(9, -93, 11, 5, 180, 3, 179, -96)
+
+[node name="Line2D" type="Line2D" parent="NodeCollisionShape2D/Interests"]
+points = PackedVector2Array(28, -94, 179, -96, 179, 2, 9, 5, 10, -94, 28, -94)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
