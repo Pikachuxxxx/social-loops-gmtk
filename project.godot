@@ -13,7 +13,10 @@ config_version=5
 config/name="Social Loops"
 run/main_scene="uid://dcqben84wg4cm"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://de781lnbmeke2"
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="uid://dln2ehtddv7h2"
+config/icon="uid://ylehpl2g2fbo"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
