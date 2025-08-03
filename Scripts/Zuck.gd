@@ -9,7 +9,7 @@ const PERT = preload("res://Scripts/PersonaTypes.gd")
 @export var post_cooldown_time_sec: int 
 @export var round_cooldown_time_sec: int 
 
-func get_random_liked_index(bitfield: int, enum_size: int) -> int:
+static func get_random_liked_index(bitfield: int, enum_size: int) -> int:
 	var indices = []
 	for i in range(enum_size):
 		if bitfield & (1 << i):
@@ -36,7 +36,7 @@ func process(delta: float) -> void:
 		if not postingPersonaNode or not postingPersonaNode.persona:
 			continue
 		var likes: int = postingPersonaNode.persona.likes
-		var likedPostIndex: int = get_random_liked_index(likes, PT.POST_TYPE.MAX_POST_TYPES)
+		var likedPostIndex: int = Zuck.get_random_liked_index(likes, PT.POST_TYPE.MAX_POST_TYPES)
 		var post: Post = Post.new();
 		print("Posting from %s with post type %d" % [postingPersonaNode.persona.user_name, likedPostIndex])
 		print("--------------------")

@@ -54,10 +54,12 @@ func _ready() -> void:
 		add_child(node)
 	queue_redraw()
 	zuck = get_tree().get_root().get_node("Node2D/ZuckAlg") as Zuck
+	GameManager.init()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	zuck.process(delta)
+	GameManager.process()
+	#zuck.process(delta)
 	wiggle.process(delta, func ():
 		# Wiggle detected
 		for node in Globals.g_nodes:
@@ -92,9 +94,9 @@ func _input(event: InputEvent) -> void:
 					if node.intersect(world_pos):
 						var group = GroupNode.new(true, func ():
 							Utils.preprocess_groups(groupPairCount, Globals.g_groups)
-							print(str(groupPairCount))
-							for group in Globals.g_groups:
-								print(str(group.nodeIds))
+							#print(str(groupPairCount))
+							#for group in Globals.g_groups:
+								#print(str(group.nodeIds))
 							pass
 						)
 						group.add_node_id(node.id, node.update_feed)
