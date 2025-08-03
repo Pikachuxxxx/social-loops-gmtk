@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bo5jscja84b13" path="res://Scripts/MoveScene.gd" id="2_i0xgv"]
 [ext_resource type="Texture2D" uid="uid://di7ro0vwosbgo" path="res://assets/image/tutorial_7.png" id="2_wnesm"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
