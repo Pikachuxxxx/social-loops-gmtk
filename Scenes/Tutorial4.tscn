@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqecltm12r3co"]
+
+[ext_resource type="Texture2D" uid="uid://fjsqj2cnrb8r" path="res://assets/image/tutorial_4.png" id="1_2r3kf"]
+[ext_resource type="Script" uid="uid://bo5jscja84b13" path="res://Scripts/MoveScene.gd" id="2_geyeu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(958.5, 545)
+scale = Vector2(2.98281, 2.98333)
+texture = ExtResource("1_2r3kf")
+script = ExtResource("2_geyeu")
+path_input = "res://Scenes/Tutorial5.tscn"
