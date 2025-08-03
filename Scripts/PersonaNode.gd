@@ -164,8 +164,3 @@ func update_feed(post: Post, group: Group) -> void:
 		$NodeCollisionShape2D/DownvotesFX.restart()
 		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/dislike.wav")
 		$NodeCollisionShape2D/SoundFX.play()
-	else:
-		spawn_comment_sprite(position)
-		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/comment.wav")
-		$NodeCollisionShape2D/SoundFX.play()
-		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])
