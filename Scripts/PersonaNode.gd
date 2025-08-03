@@ -39,6 +39,12 @@ var persona: Persona
 const SPAWN_OFFSET: int = -50
 const POST_ALIVE_TIME: float = 5.0
 
+enum IntersectMode {
+	LINK,
+	WIGGLE,
+	CLICK,
+}
+
 func init (person: Persona):
 	persona = person
 	$NodeCollisionShape2D/Sprite2D.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -59,14 +65,36 @@ func dragOn ():
 func dragOff ():
 	isDragging = false
 
-func intersect (pos: Vector2) -> bool:
+func play_unlink_wiggle_sound():
+	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/unlink_wiggle.wav")
+	$NodeCollisionShape2D/SoundFX.play()
+
+func play_link_sound():
+	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/link.wav")
+	$NodeCollisionShape2D/SoundFX.play()
+
+func play_click_sound():
+	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/click.wav")
+	$NodeCollisionShape2D/SoundFX.play()
+
+func intersect (pos: Vector2, mode: IntersectMode) -> bool:
 	var space_state = get_world_2d().direct_space_state
 
 	var query := PhysicsPointQueryParameters2D.new()
 	query.position = pos
 
 	var result = space_state.intersect_point(query)
-	return result.size() > 0 and result[0].collider == self
+	var did_intersect = false
+	if result.size() > 0:
+		did_intersect = result[0].collider == self
+	if did_intersect:
+		if mode == IntersectMode.LINK:
+			play_link_sound()
+		elif mode == IntersectMode.WIGGLE:
+			play_unlink_wiggle_sound()
+		elif mode == IntersectMode.CLICK:
+			play_click_sound()
+	return did_intersect
 
 func move_node_if_dragging (pos: Vector2) -> bool:
 	if isDragging:
@@ -128,12 +156,18 @@ func update_feed(post: Post, group: Group) -> void:
 		post.like(persona)
 		print("\tSpawn like sprite at position %s" % position)
 		$NodeCollisionShape2D/LikesFx.restart()
+		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/like.wav")
+		$NodeCollisionShape2D/SoundFX.play()
 	elif post.post_type in dislikedPostTypes:
 		post.dislike(persona)
 		print("\tSpawn dislike sprite at position %s" % position)
 		$NodeCollisionShape2D/DownvotesFX.restart()
+		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/dislike.wav")
+		$NodeCollisionShape2D/SoundFX.play()
 	else:
 		spawn_comment_sprite(position)
+		$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/comment.wav")
+		$NodeCollisionShape2D/SoundFX.play()
 		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])
 		
 	

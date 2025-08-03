@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d08vim1jhug0x"]
 
 [ext_resource type="Script" uid="uid://hhgqihr18wkj" path="res://Scripts/PersonaNode.gd" id="1_wxeb3"]
-[ext_resource type="Texture2D" uid="uid://c5svdugfif50u" path="res://assets/image/dps/karen.png" id="2_nec11"]
+[ext_resource type="Texture2D" uid="uid://chy3jek5cemcg" path="res://assets/image/dps/karen.png" id="2_nec11"]
 [ext_resource type="Material" uid="uid://bn3347xbvwdlb" path="res://Shaders/Balatro_card.tres" id="2_u7djs"]
 [ext_resource type="PackedScene" uid="uid://d3vdrjykr2i0t" path="res://FX/DownvotesFX.tscn" id="3_68h33"]
 [ext_resource type="PackedScene" uid="uid://bst4gjipcf2p3" path="res://FX/LikesFX.tscn" id="4_6mfyq"]
@@ -52,3 +52,5 @@ lifetime = 3.0
 [node name="LikesFx" parent="NodeCollisionShape2D" instance=ExtResource("4_6mfyq")]
 position = Vector2(0, -40)
 lifetime = 3.0
+
+[node name="SoundFX" type="AudioStreamPlayer2D" parent="NodeCollisionShape2D"]

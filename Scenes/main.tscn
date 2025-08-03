@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dy1vb32td1nih" path="res://Scripts/Zuck.gd" id="2_8gbba"]
 [ext_resource type="Material" uid="uid://cimd6ew5o12xl" path="res://Shaders/Balatro.tres" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://c4s7cypestpx" path="res://Scripts/CameraController.gd" id="3_kry3j"]
-[ext_resource type="AudioStream" uid="uid://dnsw6scgsmu44" path="res://assets/audio/sfx/idle_bgm.wav" id="4_6bp64"]
+[ext_resource type="AudioStream" uid="uid://c3fa7rugjhqdc" path="res://assets/audio/sfx/idle_bgm.wav" id="4_6bp64"]
 [ext_resource type="Material" uid="uid://bqi0s5jfq76s1" path="res://Shaders/Grid.tres" id="6_6bp64"]
-[ext_resource type="Texture2D" uid="uid://dopd0qy2j0arw" path="res://assets/image/dps/persona_2.png" id="7_6bp64"]
+[ext_resource type="Texture2D" uid="uid://fmjep2v6yj71" path="res://assets/image/dps/persona_2.png" id="7_6bp64"]
 [ext_resource type="FontFile" uid="uid://dexwkjgp3ky6i" path="res://Fonts/PixelifySans-Bold.ttf" id="8_344ge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ynf5e"]
@@ -19,7 +19,7 @@ script = ExtResource("1_bo1nx")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6bp64")
-autoplay = true
+volume_db = -8.937
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(4, 8)
