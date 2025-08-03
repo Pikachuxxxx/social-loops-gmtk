@@ -1,5 +1,9 @@
 extends Node2D
 
+var last_spawn_time: int = 0
+const SPAWN_TIME: int = 15000 # 15 seconds
+const NUM_SPAWN: int = 3 # Number of personas to spawn each time
+
 const PERT = preload("res://Scripts/PersonaTypes.gd")
 const IM = preload("res://Scripts/PersonaNode.gd")
 const nodeScene: PackedScene = preload("res://Scenes/persona_node.tscn")
@@ -32,6 +36,41 @@ func _draw() -> void:
 
 			draw_line(points[0], points[1], group.get_group_color(), 3, false)
 
+func create_random_persona() -> Persona:
+	var persona : Persona = Persona.new()
+	persona.persona_type = PERT.pick_random_persona_type()
+	var dp = PERT.get_persona_pic(persona.persona_type)
+	print(dp)
+	persona.display_pic = load(dp)
+	if(persona.persona_type == PERT.PERSONA_TYPE.GENERIC):
+		persona.persona_type = PERT.get_random_prototype()
+
+	var persona_type_str = PERT.PERSONA_TYPE.keys()[persona.persona_type]
+	persona.user_name = PERT.get_random_username(persona_type_str)
+	print(persona_type_str)
+	persona.occupation = "None"
+	persona.age = 20 + randi() % 30 # Random age between 20 and 50
+	# random;y set random number of likes and dislikes
+	persona.likes = 1 << (randi() % PERT.PERSONA_TYPE.MAX_PERSONA_TYPES)
+	persona.dislikes = 1 << (randi() % PERT.PERSONA_TYPE.MAX_PERSONA_TYPES)
+	# Randomly set drama, tolerance, and influence
+	persona.drama = randf() * 2.0 - 1.0
+	persona.tolerance = randf() * 2.0 - 1.0
+	persona.influence = randf() * 2.0 - 1.0
+	persona.variant_idx = 0
+
+	var num_likes = randi() % PERT.PERSONA_TYPE.MAX_PERSONA_TYPES + 1
+	var num_dislikes = randi() % PERT.PERSONA_TYPE.MAX_PERSONA_TYPES + 1
+
+	for l in num_likes:
+		var bit = 1 << (randi() % PERT.PERSONA_TYPE.MAX_PERSONA_TYPES)
+		persona.likes |= bit
+
+	for d in num_dislikes:
+		var bit = 1 << (randi() % PERT.PERSONA_TYPE.MAX_PERSONA_TYPES)
+		persona.dislikes |= bit
+	return persona
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var count = 6
@@ -40,10 +79,9 @@ func _ready() -> void:
 	for i in range(count):
 		var angle = (2.0 * PI / count) * i
 		var pos = center + Vector2(cos(angle), sin(angle)) * radius
-		var personaResourceVariants : Array = PERT.PERSONA_TYPE_RESOURCES[i]
-		# TOD: In future we can randomly pick a variant
-		var personaResVariant = personaResourceVariants[0];
-		var persona: Persona = load(personaResVariant)
+
+		# randomly create a persona type
+		var persona: Persona = create_random_persona()
 		var node: PersonaNode = nodeScene.instantiate() as PersonaNode
 		node.id = i
 		node.position = pos
@@ -54,8 +92,26 @@ func _ready() -> void:
 	queue_redraw()
 	zuck = get_tree().get_root().get_node("Node2D/ZuckAlg") as Zuck
 
+func spawn_random_persona() -> void:
+	var persona: Persona = create_random_persona()
+	var node: PersonaNode = nodeScene.instantiate() as PersonaNode
+	node.id = Globals.g_nodes.size()
+	node.position = Vector2(randf() * get_viewport_rect().size.x, randf() * get_viewport_rect().size.y)
+	persona.id = node.id
+	node.init(persona)
+	Globals.g_nodes.append(node)
+	add_child(node)
+	queue_redraw()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# every 10 seconds create 5 new personas, just check time and spawn them
+	var now = Time.get_ticks_msec() 
+	if now - last_spawn_time >= SPAWN_TIME:
+		last_spawn_time = now
+		for i in range(NUM_SPAWN):
+			spawn_random_persona()
+
 	zuck.process(delta)
 	wiggle.process(delta, func ():
 		# Wiggle detected
