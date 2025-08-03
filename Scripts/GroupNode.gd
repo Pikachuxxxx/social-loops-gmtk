@@ -18,6 +18,17 @@ static func generate_random_color() -> Color:
 	var randomColor = Color(randf() , randf(), randf())
 	return Color(randomColor.r, randomColor.g, randomColor.b, 1.0)  # Ensure alpha is 1.0
 
+# @brief Generates a random light color suitable for a black text background.
+# @return Color: A new Color object with high red, green, and blue values.
+func get_random_light_color() -> Color:
+	randomize()
+
+	var r = randf_range(0.7, 1.0)
+	var g = randf_range(0.7, 1.0)
+	var b = randf_range(0.7, 1.0)
+
+	return Color(r, g, b, 1.0)
+
 static func generate_random_bright_color() -> Color:
 	var hue = randf() # 0.0 to 1.0
 	var saturation = 0.8 + randf() * 0.2 # 0.8 to 1.0 (high saturation)
@@ -30,7 +41,7 @@ func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass
 	id = GroupNode.idCount
 	GroupNode.idCount += 1
 	groupProps = GroupProps.new()
-	groupProps.color = generate_random_bright_color()
+	groupProps.color = get_random_light_color()
 
 func get_group_color() -> Color:
 	return groupProps.color

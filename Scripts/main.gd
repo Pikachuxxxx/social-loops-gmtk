@@ -118,7 +118,7 @@ func _process(delta: float) -> void:
 		for node in Globals.g_nodes:
 			if node.isDragging:
 				for group in Globals.g_groups:
-					node.play_unlink_wiggle_sound()
+					#node.play_unlink_wiggle_sound()
 					group.erase_node(node.id, node.update_feed)
 	)
 
@@ -140,11 +140,11 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Followers.text = "Total Followers: " + str(Globals.g_nodes.size())
 
 	# if totalEngagement is less than 0 then restart the entire game
-	if totalEngagement < 0:
-		print("Total Engagement is less than 0, restarting the game")
-		Globals.g_nodes.clear()
-		Globals.g_groups.clear()
-		get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	#if totalEngagement < 0:
+		#print("Total Engagement is less than 0, restarting the game")
+		#Globals.g_nodes.clear()
+		#Globals.g_groups.clear()
+		#get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
