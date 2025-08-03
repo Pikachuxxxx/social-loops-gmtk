@@ -67,6 +67,7 @@ lifetime = 3.0
 [node name="SoundFX" type="AudioStreamPlayer2D" parent="NodeCollisionShape2D"]
 
 [node name="Interests" type="Polygon2D" parent="NodeCollisionShape2D"]
+visible = false
 z_index = 210
 position = Vector2(25.3158, 113.663)
 scale = Vector2(1.29825, 1.26733)

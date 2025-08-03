@@ -9,7 +9,7 @@ var isInProgress = false
 var nodeIds: Array[int] = []
 var onGroupUpdate: Callable = func ():
 	pass
-var lastPostTime: float = 0.0
+var lastPostTime: float = 15.0
 signal post_created(post)
 var groupProps: GroupProps
 
