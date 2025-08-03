@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d08vim1jhug0x"]
+[gd_scene load_steps=11 format=3 uid="uid://d08vim1jhug0x"]
 
 [ext_resource type="Script" uid="uid://hhgqihr18wkj" path="res://Scripts/PersonaNode.gd" id="1_wxeb3"]
-[ext_resource type="Texture2D" uid="uid://ch545vpggycob" path="res://assets/image/dps/karen.png" id="2_nec11"]
+[ext_resource type="Texture2D" uid="uid://chy3jek5cemcg" path="res://assets/image/dps/karen.png" id="2_nec11"]
 [ext_resource type="Material" uid="uid://bn3347xbvwdlb" path="res://Shaders/Balatro_card.tres" id="2_u7djs"]
 [ext_resource type="PackedScene" uid="uid://d3vdrjykr2i0t" path="res://FX/DownvotesFX.tscn" id="3_68h33"]
 [ext_resource type="PackedScene" uid="uid://bst4gjipcf2p3" path="res://FX/LikesFX.tscn" id="4_6mfyq"]
 [ext_resource type="PackedScene" uid="uid://sqflj4ksfawq" path="res://Scenes/post.tscn" id="5_6mfyq"]
-[ext_resource type="FontFile" uid="uid://51f2yqhkm4oa" path="res://Fonts/Tiny5-Regular.ttf" id="7_rxfsb"]
+[ext_resource type="FontFile" uid="uid://cls4ip3fipogt" path="res://Fonts/Tiny5-Regular.ttf" id="7_rxfsb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2q8x"]
 radius = 34.0
