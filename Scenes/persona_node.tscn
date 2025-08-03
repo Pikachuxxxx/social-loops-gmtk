@@ -46,10 +46,12 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="DownvotesFX" parent="NodeCollisionShape2D" instance=ExtResource("3_68h33")]
+z_index = 3
 position = Vector2(0, -40)
 lifetime = 3.0
 
 [node name="LikesFx" parent="NodeCollisionShape2D" instance=ExtResource("4_6mfyq")]
+z_index = 3
 position = Vector2(0, -40)
 lifetime = 3.0
 

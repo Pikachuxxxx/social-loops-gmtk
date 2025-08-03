@@ -53,17 +53,25 @@ func _ready() -> void:
 		add_child(node)
 	queue_redraw()
 	zuck = get_tree().get_root().get_node("Node2D/ZuckAlg") as Zuck
+	GameManager.init()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	zuck.process(delta)
+	GameManager.process()
+	#zuck.process(delta)
 	wiggle.process(delta, func ():
 		# Wiggle detected
+		# Globals.g_nodes.filter()
 		for node in Globals.g_nodes:
 			if node.isDragging:
-				for group in Globals.g_groups:
-					node.play_unlink_wiggle_sound()
-					group.erase_node(node.id, node.update_feed)
+				var groups = Globals.get_node_groups(node.id)
+				if groups.size() == 1:
+					groups[0].erase_node(node.id, node.update_feed)
+				elif groups.size() > 1:
+					PostManager.update_rxns()
+					Globals.showBackdrop = true
+					Globals.updatingNodeId = node.id
+					$Backdrop/RemoveNodeFromGroups.queue_redraw()
 	)
 
 	for node in Globals.g_nodes:
@@ -71,6 +79,14 @@ func _process(delta: float) -> void:
 			node.update_sprite_scale(2.4)
 		else:
 			node.update_sprite_scale(2)
+			
+	var metrics2 = PostManager.get_global_metrics()
+	$CanvasLayer2/MarginContainer/Label.text = "Engagement: " + str(metrics2.x) + "        Satisfaction: %.2f" % metrics2.y
+	
+	if Globals.showBackdrop:
+		$Backdrop.show()
+	else:
+		$Backdrop.hide()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -92,13 +108,14 @@ func _input(event: InputEvent) -> void:
 					if node.intersect(world_pos, IM.IntersectMode.LINK):
 						var group = GroupNode.new(true, func ():
 							Utils.preprocess_groups(groupPairCount, Globals.g_groups)
-							print(str(groupPairCount))
-							for group in Globals.g_groups:
-								print(str(group.nodeIds))
+							#print(str(groupPairCount))
+							#for group in Globals.g_groups:
+								#print(str(group.nodeIds))
 							pass
 						)
 						group.add_node_id(node.id, node.update_feed)
 						Globals.g_groups.append(group)
+						PostManager.update_rxns()
 						queue_redraw()
 						break
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
@@ -120,6 +137,7 @@ func _input(event: InputEvent) -> void:
 					var group = Globals.g_groups[groupNodeVector.x]
 					var insertIdx = groupNodeVector.y+1
 					group.insert_node_id(insertIdx, node.id, node.update_feed)
+					PostManager.update_rxns()
 				wiggle.on_move(mousePosition)
 				queue_redraw()
 		# GroupNode expansion
