@@ -30,7 +30,7 @@ func _draw() -> void:
 			var count = Utils.get_pair_count(groupPairCount, nodeId, nextNodeId)
 			var points = Utils.get_adjacent_line(_groupPairCount[key], count, nodePosition, nextNodePosition)
 
-			draw_line(points[0], points[1], group.color, 3, false)
+			draw_line(points[0], points[1], group.get_group_color(), 3, false)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

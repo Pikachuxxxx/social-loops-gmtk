@@ -11,8 +11,7 @@ var onGroupUpdate: Callable = func ():
 	pass
 var lastPostTime: float = 0.0
 signal post_created(post)
-var group: Group
-var color: Color
+var groupProps: GroupProps
 
 # get random color using a random number generator
 static func generate_random_color() -> Color:
@@ -30,7 +29,11 @@ func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass
 	onGroupUpdate = _onGroupUpdate
 	id = GroupNode.idCount
 	GroupNode.idCount += 1
-	self.color = generate_random_bright_color()
+	groupProps = GroupProps.new()
+	groupProps.color = generate_random_color()
+
+func get_group_color() -> Color:
+	return groupProps.color
 
 func add_node_id (nodeId: int, nodeCB: Callable) -> void:
 	if not nodeIds.has(nodeId): # Use dictionary instead?
@@ -50,4 +53,4 @@ func erase_node (nodeId: int, nodeCB: Callable):
 	onGroupUpdate.call()
 
 func make_post(post):
-	emit_signal("post_created", post, group)
+	emit_signal("post_created", post, groupProps)

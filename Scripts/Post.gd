@@ -1,4 +1,4 @@
-extends Resource
+extends Node2D
 class_name Post
 
 const PT = preload("res://Scripts/PostTypes.gd")

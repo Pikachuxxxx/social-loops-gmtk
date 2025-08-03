@@ -131,8 +131,11 @@ func deactivate_post_ui(postNode: Node):
 	await get_tree().create_timer(POST_ALIVE_TIME).timeout
 	postNode.visible = false
 
-func set_post(post: Post) -> void:
+func set_post(post: Post, color:Color) -> void:
 	if(persona and post):
+		$NodeCollisionShape2D/Post/PostPolygon.color = color
+		$NodeCollisionShape2D/Post/PostPolygonArrow.color = color
+
 		$NodeCollisionShape2D/Post.visible = true
 		$NodeCollisionShape2D/Post/UserName.text = persona.user_name
 		## TODO: choose a post from post bank based on the type and intent etc.
@@ -143,11 +146,12 @@ func set_post(post: Post) -> void:
 			$NodeCollisionShape2D/Post/PostType.text = ""
 		deactivate_post_ui($NodeCollisionShape2D/Post)
 
-func update_feed(post: Post, group: Group) -> void:
+func update_feed(post: Post, groupProps: GroupProps) -> void:
 	# If self posted don't react, but make the post
 	if(post.who_posted == id):
-		set_post(post)
+		set_post(post, groupProps.color)
 		return
+
 	# This is where the persona reacts to the post
 	print("Persona %s reacting to post of type %d by %d" % [persona.user_name, post.post_type, post.who_posted])
 	var likedPostTypes: Array[int] = get_bitfield_post_types(persona.likes)
