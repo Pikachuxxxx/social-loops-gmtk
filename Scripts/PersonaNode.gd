@@ -45,6 +45,17 @@ enum IntersectMode {
 	CLICK,
 }
 
+func _process(delta):
+	var mouse_pos = get_global_mouse_position()
+	var circle_shape = $NodeCollisionShape2D.shape
+	var circle_center = $NodeCollisionShape2D.global_position
+	if circle_shape is CircleShape2D:
+		var distance = mouse_pos.distance_to(circle_center)
+		if distance <= circle_shape.radius:
+			$NodeCollisionShape2D/Interests.visible = true
+		else:
+			$NodeCollisionShape2D/Interests.visible = false
+
 func init (person: Persona):
 	persona = person
 	$NodeCollisionShape2D/Sprite2D.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -58,6 +69,17 @@ func init (person: Persona):
 	labelSettings.font_color = Color.BLACK
 	labelSettings.font_size = 16
 	$NodeCollisionShape2D/Label.label_settings = labelSettings
+
+	# fill the interests
+	var interests: Array[int] = get_bitfield_post_types(persona.likes)
+	var dislikes: Array[int] = get_bitfield_post_types(persona.dislikes)
+	$NodeCollisionShape2D/Interests/Likes.text = "Likes: "
+	$NodeCollisionShape2D/Interests/Dislikes.text = "Dislikes: "
+	for postType in interests:
+		$NodeCollisionShape2D/Interests/Likes.text += PT.get_string_from_value(postType) + ", "
+	for postType in dislikes:
+		$NodeCollisionShape2D/Interests/Dislikes.text += PT.get_string_from_value(postType) + ", "
+
 
 func dragOn ():
 	isDragging = true
