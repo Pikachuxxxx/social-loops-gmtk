@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://hiww2pciwuor"]
 
 [ext_resource type="Script" uid="uid://bo5jscja84b13" path="res://Scripts/MoveScene.gd" id="2_gppro"]
-[ext_resource type="Texture2D" uid="uid://bv23iuch4ie0c" path="res://assets/image/tutorial_6.png" id="2_ypnxj"]
+[ext_resource type="Texture2D" uid="uid://d3me4clbac41k" path="res://assets/image/tutorial_6.png" id="2_ypnxj"]
 
 [node name="Node2D" type="Node2D"]
 
