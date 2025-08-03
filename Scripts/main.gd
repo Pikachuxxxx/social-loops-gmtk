@@ -1,6 +1,7 @@
 extends Node2D
 
 const PERT = preload("res://Scripts/PersonaTypes.gd")
+const IM = preload("res://Scripts/PersonaNode.gd")
 const nodeScene: PackedScene = preload("res://Scenes/persona_node.tscn")
 var zuck: Zuck
 
@@ -63,6 +64,7 @@ func _process(delta: float) -> void:
 		for node in Globals.g_nodes:
 			if node.isDragging:
 				for group in Globals.g_groups:
+					node.play_unlink_wiggle_sound()
 					group.erase_node(node.id, node.update_feed)
 	)
 
@@ -78,7 +80,7 @@ func _input(event: InputEvent) -> void:
 		# Move Globals.g_nodes around
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			for node in Globals.g_nodes:
-				if node.intersect(world_pos):
+				if node.intersect(world_pos, IM.IntersectMode.CLICK):
 					node.dragOn()
 					wiggle.init(world_pos)
 		elif event.button_index == MOUSE_BUTTON_LEFT:
@@ -89,7 +91,7 @@ func _input(event: InputEvent) -> void:
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			if not isGroupActive():
 				for node in Globals.g_nodes:
-					if node.intersect(world_pos):
+					if node.intersect(world_pos, IM.IntersectMode.LINK):
 						var group = GroupNode.new(true, func ():
 							Utils.preprocess_groups(groupPairCount, Globals.g_groups)
 							print(str(groupPairCount))
@@ -125,7 +127,7 @@ func _input(event: InputEvent) -> void:
 		# GroupNode expansion
 		if isGroupActive():
 			for node in Globals.g_nodes:
-				if node.intersect(mousePosition):
+				if node.intersect(mousePosition, IM.IntersectMode.LINK):
 					Globals.g_groups[Globals.g_groups.size()-1].add_node_id(node.id, node.update_feed)
 			queue_redraw()
 

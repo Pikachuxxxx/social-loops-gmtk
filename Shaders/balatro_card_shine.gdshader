@@ -1,7 +1,8 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-// Modified from: https://www.shadertoy.com/view/w3VGzm
+// [OG] Modified from: https://www.shadertoy.com/view/w3VGzm
+// Test: https://www.shadertoy.com/view/W3yXR1
 float rand(float co) {
     return fract(sin(dot(vec2(co, co) ,vec2(12.9898,78.233))) * 43758.5453);
 }

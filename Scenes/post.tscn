@@ -84,7 +84,8 @@ scale = Vector2(0.0855077, 0.105511)
 text = "Why is the sky blue? 
 Stupid nature!"
 label_settings = SubResource("LabelSettings_1wpbu")
-autowrap_mode = 3
+autowrap_mode = 2
+justification_flags = 227
 metadata/_edit_use_anchors_ = true
 
 [node name="PostType" type="Label" parent="."]
