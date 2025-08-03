@@ -30,7 +30,7 @@ func _init(_isInProgress: bool = false, _onGroupUpdate: Callable = func (): pass
 	id = GroupNode.idCount
 	GroupNode.idCount += 1
 	groupProps = GroupProps.new()
-	groupProps.color = generate_random_color()
+	groupProps.color = generate_random_bright_color()
 
 func get_group_color() -> Color:
 	return groupProps.color

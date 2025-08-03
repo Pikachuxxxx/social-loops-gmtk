@@ -30,6 +30,9 @@ const pixelFont = preload("res://Fonts/PixelifySans-Regular.ttf")
 const LikeFX = preload("res://FX/LikesFX.tscn")
 const DownvotesFX = preload("res://FX/DownvotesFX.tscn")
 
+# preload sounds
+const sfx_unlink = preload("res://assets/audio/sfx/unlink_wiggle.wav")
+
 const radius = 10
 var isDragging = false
 var id = -1
@@ -66,7 +69,7 @@ func dragOff ():
 	isDragging = false
 
 func play_unlink_wiggle_sound():
-	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/unlink_wiggle.wav")
+	$NodeCollisionShape2D/SoundFX.stream = sfx_unlink
 	$NodeCollisionShape2D/SoundFX.play()
 
 func play_link_sound():
@@ -87,13 +90,13 @@ func intersect (pos: Vector2, mode: IntersectMode) -> bool:
 	var did_intersect = false
 	if result.size() > 0:
 		did_intersect = result[0].collider == self
-	if did_intersect:
-		if mode == IntersectMode.LINK:
-			play_link_sound()
-		elif mode == IntersectMode.WIGGLE:
-			play_unlink_wiggle_sound()
-		elif mode == IntersectMode.CLICK:
-			play_click_sound()
+	#if did_intersect:
+		#if mode == IntersectMode.LINK:
+			#play_link_sound()
+		#elif mode == IntersectMode.WIGGLE:
+			#play_unlink_wiggle_sound()
+		#elif mode == IntersectMode.CLICK:
+			#play_click_sound()
 	return did_intersect
 
 func move_node_if_dragging (pos: Vector2) -> bool:
@@ -149,15 +152,15 @@ func set_post(post: Post, color:Color) -> void:
 func post_liked() ->void:
 	$NodeCollisionShape2D/LikesFx.restart()
 	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/like.wav")
-	$NodeCollisionShape2D/SoundFX.play()
+	#$NodeCollisionShape2D/SoundFX.play()
 func post_disliked() -> void:
 	$NodeCollisionShape2D/DownvotesFX.restart()
 	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/dislike.wav")
-	$NodeCollisionShape2D/SoundFX.play()
+	#$NodeCollisionShape2D/SoundFX.play()
 
 func post_commented() -> void:
 	$NodeCollisionShape2D/SoundFX.stream = load("res://assets/audio/sfx/comment.wav")
-	$NodeCollisionShape2D/SoundFX.play()	
+	#$NodeCollisionShape2D/SoundFX.play()	
 
 
 func update_feed(post: Post, groupProps: GroupProps) -> void:
