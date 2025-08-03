@@ -133,7 +133,7 @@ func update_feed(post: Post, group: Group) -> void:
 		print("\tSpawn dislike sprite at position %s" % position)
 		$NodeCollisionShape2D/DownvotesFX.restart()
 	else:
-		spawn_comment_sprite(position)
+		#spawn_comment_sprite(position)
 		print("\tPersona %s does not like or dislike post of type %d" % [persona.user_name, post.post_type])
 		
 	
