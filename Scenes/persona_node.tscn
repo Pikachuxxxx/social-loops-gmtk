@@ -12,6 +12,7 @@ radius = 34.0
 
 [node name="PersonaNode" type="StaticBody2D"]
 texture_filter = 1
+position = Vector2(-1, 0)
 script = ExtResource("1_wxeb3")
 
 [node name="NodeCollisionShape2D" type="CollisionShape2D" parent="."]
