@@ -16,6 +16,7 @@ Rxn {
 
 """
 const PT = preload("res://Scripts/PostTypes.gd")
+const PERT = preload("res://Scripts/PersonaTypes.gd")
 
 const POST_START_OFFSET = 2 * 1000
 const POST_MIN_END_OFFSET = 4 * 1000
@@ -24,7 +25,7 @@ const RXN_TIME = 0.5 * 1000
 const RXN_COMMENT_TIME = 1 * 1000
 const RXN_COMMENT_READ_TIME = 1 * 1000 # Maybe calculate it dynamically
 
-static var posts: Array[XPost] = []
+static var posts: Array[Post] = []
 
 static func process(currTime: int) -> void:
 	var activePostCount = get_active_posts_count(currTime)
@@ -73,14 +74,14 @@ static func generate_rxns (postStartAt: int, type: int, rxnIds: Array[int]):
 
 static func generate_new_post (currTime: int):
 	print("Generating new post")
-	var post = XPost.new()
+	var post = Post.new()
 	post.startAt = currTime + POST_START_OFFSET + randi_range(0,4) * 1000
 
 	var node = Globals.g_nodes[randi_range(0, Globals.g_nodes.size()-1)]
 	while get_active_posts(currTime).map(func(p): return p.nodeId).has(node.id):
 		node = Globals.g_nodes[randi_range(0, Globals.g_nodes.size()-1)]
 	
-	post.type = Zuck.get_random_liked_index(node.persona.likes, PT.POST_TYPE.MAX_POST_TYPES)
+	post.type = get_random_liked_index(node.persona.likes, PT.POST_TYPE.MAX_POST_TYPES)
 	post.nodeId = node.id
 	
 	post.endAt = post.startAt + POST_MIN_END_OFFSET
@@ -126,8 +127,8 @@ static func get_active_posts_count (currTime: int) -> int:
 			activePostCount += 1
 	return activePostCount
 
-static func get_active_posts (currTime: int) -> Array[XPost]:
-	var activePosts: Array[XPost] = []
+static func get_active_posts (currTime: int) -> Array[Post]:
+	var activePosts: Array[Post] = []
 	for post in posts:
 		if currTime < post.endAt:
 			activePosts.append(post)

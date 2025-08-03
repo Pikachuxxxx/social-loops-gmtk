@@ -145,15 +145,6 @@ func set_post(post: Post, color:Color) -> void:
 			$NodeCollisionShape2D/Post/PostType.text = ""
 		deactivate_post_ui($NodeCollisionShape2D/Post)
 		
-func set_xpost (post: XPost) -> void:
-	if persona and post:
-		$NodeCollisionShape2D/Post.visible = true
-		$NodeCollisionShape2D/Post/UserName.text = persona.user_name
-		## TODO: choose a post from post bank based on the type and intent etc.
-		$NodeCollisionShape2D/Post/PostMessage.text = PT.get_random_message(persona.persona_type, post.type)
-		$NodeCollisionShape2D/Post/PostType.text = "[Debug]" + PT.get_string_from_value(post.type)
-		deactivate_post_ui($NodeCollisionShape2D/Post)
-
 func animate_likes () -> void:
 	$NodeCollisionShape2D/LikesFx.restart()
 	

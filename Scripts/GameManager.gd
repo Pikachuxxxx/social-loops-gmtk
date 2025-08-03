@@ -2,7 +2,7 @@ extends Node
 class_name GameManager
 
 static var START_TIME: int
-const START_TIME_OFFSET: int = 5 * 1000
+const START_TIME_OFFSET: int = 5 * 1000 # 5 seconds before the first post is created
 
 static var prevTime: int
 
@@ -27,12 +27,11 @@ static func process() -> void:
 	
 	PostManager.process(currTime)
 	
-	var activePosts: Array[XPost] = PostManager.get_active_posts(currTime)
+	var activePosts: Array[Post] = PostManager.get_active_posts(currTime)
 	for activePost in activePosts:
 		if currTime > activePost.startAt and !activePost.isTriggered:
 			activePost.isTriggered = true
 			var node = Globals.get_persona_node(activePost.nodeId)
-			node.set_xpost(activePost)
 			
 		for rxn in activePost.rxns:
 			if currTime > rxn.startAt and !rxn.isTriggered:
