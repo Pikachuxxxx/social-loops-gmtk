@@ -17,6 +17,7 @@ void fragment() {
 
     float dot = smoothstep(radius_uv, radius_uv * 0.8, dist);
     dot = 1.0 - dot;
-
-    COLOR = mix(bg_color, dot_color, dot) * 0.8;
+    if(dot > 0.9) dot = 1.0;
+    COLOR = mix(bg_color, dot_color, dot);
+	//COLOR = vec4(1);
 }

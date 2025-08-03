@@ -44,7 +44,7 @@ func init (person: Persona):
 	$NodeCollisionShape2D/Sprite2D.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	$NodeCollisionShape2D/Sprite2D.texture = persona.display_pic
 	# Set label below display picture
-	$NodeCollisionShape2D/Label.text = persona.user_name
+	$NodeCollisionShape2D/Label.text = persona.user_name.left(persona.user_name.length() - 1)
 	$NodeCollisionShape2D/Label.position += Vector2(0,85)
 	
 	var labelSettings = LabelSettings.new()
